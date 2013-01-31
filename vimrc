@@ -269,8 +269,8 @@ set undolevels=100
 map è `
 
 "point
-map ; .
-map . ;
+noremap ; .
+noremap . ;
 
 "Envoyer à bash
 map gb :.w !bash
