@@ -358,7 +358,7 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
  " let Vundle manage Vundle
  " required! 
  Bundle 'gmarik/vundle'
- "Bundle 'ervandew/supertab'
+ Bundle 'ervandew/supertab'
  " My Bundles here:
  " original repos on github
  Bundle 'scrooloose/nerdtree'
