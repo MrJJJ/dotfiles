@@ -354,17 +354,15 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
 "
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
-
  " let Vundle manage Vundle
  " required! 
  Bundle 'gmarik/vundle'
  Bundle 'ervandew/supertab'
- " My Bundles here:
- " original repos on github
  Bundle 'scrooloose/nerdtree'
  map gh <leader>c<leader>
  Bundle 'scrooloose/nerdcommenter'
  map gn :silent NERDTreeToggle <CR>
+ Bundle 'kien/ctrlp.vim'
  "Bundle 'tpope/vim-fugitive'
  "Bundle 'Lokaltog/vim-easymotion'
  "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}

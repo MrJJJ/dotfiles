@@ -181,3 +181,5 @@ if [ -z $XCAPE ] ; then
 	killall xcape
 	xcape -e 'Caps_Lock=Escape'
 fi
+
+source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
