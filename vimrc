@@ -363,6 +363,7 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
  Bundle 'scrooloose/nerdcommenter'
  map gn :silent NERDTreeToggle <CR>
  Bundle 'kien/ctrlp.vim'
+ map <C-b> :silent CtrlPBuffer <CR>
  "Bundle 'tpope/vim-fugitive'
  "Bundle 'Lokaltog/vim-easymotion'
  "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
