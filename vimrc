@@ -349,12 +349,12 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
 
 ""Vundle -> manage vim bundle
 ""git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-" set nocompatible               " be iMproved
-" filetype off                   " required!
+ set nocompatible               " be iMproved
+ filetype off                   " required!
 "
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
- " let Vundle manage Vundle
+ "let Vundle manage Vundle
  " required! 
  Bundle 'gmarik/vundle'
  Bundle 'ervandew/supertab'
@@ -364,6 +364,11 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
  map gn :silent NERDTreeToggle <CR>
  Bundle 'kien/ctrlp.vim'
  map <C-b> :silent CtrlPBuffer <CR>
+ Bundle 'hsitz/VimOrganizer.git'
+ Bundle 'kikijump/tslime.vim.git' 
+ "Not fully supported by vundle
+ "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
+ 
  "Bundle 'tpope/vim-fugitive'
  "Bundle 'Lokaltog/vim-easymotion'
  "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
