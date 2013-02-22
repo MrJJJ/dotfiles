@@ -352,22 +352,32 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
  set nocompatible               " be iMproved
  filetype off                   " required!
 "
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
- "let Vundle manage Vundle
- " required! 
- Bundle 'gmarik/vundle'
- Bundle 'ervandew/supertab'
- Bundle 'scrooloose/nerdtree'
- map gh <leader>c<leader>
- Bundle 'scrooloose/nerdcommenter'
- map gn :silent NERDTreeToggle <CR>
- Bundle 'kien/ctrlp.vim'
- map <C-b> :silent CtrlPBuffer <CR>
- Bundle 'hsitz/VimOrganizer.git'
- Bundle 'kikijump/tslime.vim.git' 
- "Not fully supported by vundle
- "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+"let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'ervandew/supertab'
+Bundle 'scrooloose/nerdtree'
+map gh <leader>c<leader>
+Bundle 'scrooloose/nerdcommenter'
+map gn :silent NERDTreeToggle <CR>
+Bundle 'kien/ctrlp.vim'
+map <C-b> :silent CtrlPBuffer <CR>
+let g:ctrlp_prompt_mappings = {
+      \ 'PrtSelectMove("j")': ['<c-j>', '<down>', 'J'],
+      \ 'PrtSelectMove("k")': ['<c-k>', '<up>', 'K'],
+      \ 'PrtHistory(-1)': ['<c-n>'],
+      \ 'PrtHistory(1)': ['<c-p>'],
+      \ 'ToggleFocus()': ['<c-i>'],
+      \ }
+let g:ctrlp_match_window_reversed = 0 "CtrlP on top of screen
+"Bundle 'hsitz/VimOrganizer.git'
+Bundle 'kikijump/tslime.vim.git' 
+"Not fully supported by vundle
+"cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
+Bundle 'kakkyz81/evervim.git'
+"let g:evervim_devtoken='S=s6:U=d1042:E=1443bcc495e:C=13ce41b1d5f:P=1cd:A=en-devtoken:H=010e07ce2cf08e48fd0863997c293964'
  
  "Bundle 'tpope/vim-fugitive'
  "Bundle 'Lokaltog/vim-easymotion'
@@ -391,30 +401,31 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
  " NOTE: comments after Bundle command are not allowed..
 
 
-if has("autocmd")
-	au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile1/cursor_shape ibeam"
-	au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile1/cursor_shape block"
-    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile1/cursor_shape block"
-    endif
+
+"xterm
+"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+"if has("autocmd")
+	"au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile1/cursor_shape ibeam"
+	"au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile1/cursor_shape block"
+    "au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile1/cursor_shape block"
+    "endif
 "
 ""Pour urxvt
 "silent !echo -ne "\033]12;white\007"    " Initialize the cursor to white at startup
 ""let &t_SI = "\033]12;green\007" " Turn the cursor green when entering insert mode
 "let &t_EI = "\033]12;white\007" " Turn the cursor white again when leaving insert mode
 "autocmd VimLeave * !echo -ne "\033]12;white\007"    " Make sure the cursor is back to white when Vim exits
-"
-"if &term =~ "xterm\\|rxvt"
- " " use an orange cursor in insert mode
- " let &t_SI = "\<Esc>]12;orange\x7"
-  " use a red cursor otherwise
- " let &t_EI = "\<Esc>]12;red\x7"
- " silent !echo -ne "\033]12;red\007"
-  " reset cursor when vim exits
- " autocmd VimLeave * silent !echo -ne "\033]112\007"
-  " use \003]12;gray\007 for gnome-terminal
-"
-"  let &t_SI .= "\<Esc>[4 q"
-  " solid block
-  "let &t_EI .= "\<Esc>[2 q"
-  " 1 or 0 -> blinking block
-  " 3 -> blinking underscore
+
+"if &term =~ '^xterm'
+   "solid underscore
+  "let &t_SI .= "\<Esc>[5 q"
+	   "" solid block
+	 "let &t_EI .= "\<Esc>[2 q"
+		   "" 1 or 0 -> blinking block
+			 "" 3 -> blinking underscore
+			   "" Recent versions of xterm (282 or above) also support
+				 "" 5 -> blinking vertical bar
+				   "" 6 -> solid vertical bar
+   "endif
