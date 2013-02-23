@@ -428,3 +428,4 @@ Bundle 'kakkyz81/evervim.git'
 """TOGGLE SETTING"""
 "Toggle spell check
 nmap <leader>ss :set spell!<CR>
+nmap <leader>sl :set list!<CR>
