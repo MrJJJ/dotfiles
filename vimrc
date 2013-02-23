@@ -301,12 +301,6 @@ vmap g: :s/^\/\///g <Enter>
 
 map g# ^ijkki################################################################################jkyyjpki###   jk$a   ###jkkld$jjld$
 
-map ''' bi'jkeai'jk 
-map """ bi"jkeai"jk 
-map ((( bi(jkeai)jkF(
-map {{{ bi{jkeai}jkF{ 
-map [[[ bi[jkeai]jkF[ 
-
 
 "map & 1
 "map é 2
