@@ -429,3 +429,8 @@ Bundle 'kakkyz81/evervim.git'
 				 "" 5 -> blinking vertical bar
 				   "" 6 -> solid vertical bar
    "endif
+   "
+  
+"""TOGGLE SETTING"""
+"Toggle spell check
+nmap <leader>ss :set spell!<CR>
