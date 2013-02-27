@@ -104,10 +104,7 @@ au BufRead,BufNewfile *.fasta set filetype=align
 au BufRead,BufNewfile *.tex set filetype=tex
 
 set dictionary+=/usr/share/dict/american-english
-imap <C-b> <C-x><C-k><C-n>
-
-
-
+set dictionary+=/usr/share/dict/french
 
 "Ctag et taglist
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
@@ -232,14 +229,14 @@ set pastetoggle=<F3>
 hi Statement ctermfg=yellow
 
 "Peaufinement esthétique des onglets
-hi TabLineFill cterm=bold
-hi TabLineFill ctermbg=0
-hi TabLine ctermfg=0
+hi TabLineFill cterm=none
+hi TabLineFill ctermbg=14
+hi TabLine ctermfg=14
+hi TabLine ctermbg=white
 hi TabLine cterm=none
 hi TabLine cterm=reverse
-hi TabLineSel ctermbg=0
-hi TabLineSel ctermfg=yellow
-hi TabLineSel ctermfg=3
+hi TabLineSel ctermbg=none
+hi TabLineSel ctermfg=white
 "Peaufinement esthétique des replis
 hi Folded ctermfg=cyan ctermbg=black
 "Peaufinement esthétique pour popup completion
@@ -351,13 +348,18 @@ call vundle#rc()
 "let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
+
 Bundle 'ervandew/supertab'
+
 Bundle 'scrooloose/nerdtree'
 map gh <leader>c<leader>
+
 Bundle 'scrooloose/nerdcommenter'
 map gn :silent NERDTreeToggle <CR>
+
 Bundle 'kien/ctrlp.vim'
 map <C-b> :silent CtrlPBuffer <CR>
+map <C-b> :ls<CR>:b
 let g:ctrlp_prompt_mappings = {
       \ 'PrtSelectMove("j")': ['<c-j>', '<down>', 'J'],
       \ 'PrtSelectMove("k")': ['<c-k>', '<up>', 'K'],
@@ -366,17 +368,26 @@ let g:ctrlp_prompt_mappings = {
       \ 'ToggleFocus()': ['<c-i>'],
       \ }
 let g:ctrlp_match_window_reversed = 0 "CtrlP on top of screen
-"Bundle 'hsitz/VimOrganizer.git'
+
 Bundle 'kikijump/tslime.vim.git' 
+
 "Not fully supported by vundle
 "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
-Bundle 'kakkyz81/evervim.git'
+
+Bundle 'MrJJJ/csv.vim.git'
+	hi default CSVColumnHeaderEven term=bold guibg=none
+	hi default CSVColumnHeaderOdd term=bold guibg=none
+	hi default CSVColumnEven term=bold guibg=none
+	hi default CSVColumnOdd term=bold guibg=none
+	hi default CSVDelimiter term=bold guibg=none
+	let g:csv_no_conceal=1
+	nmap gcsv :%ArrangeColumn<CR>
+"Bundle 'kakkyz81/evervim.git'
 "let g:evervim_devtoken='S=s6:U=d1042:E=1443bcc495e:C=13ce41b1d5f:P=1cd:A=en-devtoken:H=010e07ce2cf08e48fd0863997c293964'
  
  "Bundle 'tpope/vim-fugitive'
  "Bundle 'Lokaltog/vim-easymotion'
  "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
- "Bundle 'tpope/vim-rails.git'
  " vim-scripts repos
 " Bundle 'L9'
  "Bundle 'FuzzyFinder'
@@ -429,3 +440,4 @@ Bundle 'kakkyz81/evervim.git'
 "Toggle spell check
 nmap <leader>ss :set spell!<CR>
 nmap <leader>sl :set list!<CR>
+nmap <leader>slz :set list!<CR>
