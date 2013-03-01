@@ -177,6 +177,19 @@ f(){ if [ "$PWD" != "$LPWD" ];then LPWD="$PWD"; tmux rename-window ${PWD//*\//};
 #https://github.com/joelthelion/autojump/downloads
 [[ -f ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
+
+#Print 256 colors
+col256()
+{
+( x=`tput op` y=`printf %$((${COLUMNS}-6))s`;
+for i in {0..256};
+do
+o=00$i;
+echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;
+done )
+}
+
+
 #xcape
 #sudo apt-get install git gcc make libx11-dev libxtst-dev pkg-config
 #cd ~/app/xcape
