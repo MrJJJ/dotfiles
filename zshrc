@@ -61,6 +61,12 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+
+#hostname completion : ~/.ssh/config MUST contain HashKnownHosts no
+local knownhosts
+knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} ) 
+zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
+
 #unsetopt list_ambiguous #Faire qu'au premier tab il y est la liste de toutes les possibilités+partie commune puis rotation entre elles
 
 #Autocorrection
@@ -101,6 +107,7 @@ if [ -x /usr/bin/dircolors ]; then
 	alias s='cd ..'
 fi
 
+#Open all filenames in vim
 function lv() {ls "$@" | vim - ;} #ouvrir un ls dans vim
 
 #Archive
