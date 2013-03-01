@@ -1,10 +1,4 @@
 set nocompatible
-										
-"Si vous voulez utiliez les CTRL+C, CTRL+V, ...
-"source $HOME/.vim/mswin.vim
-"Sinon vous pouvez toujours utiliser une version minimale qui surcharge juste
-"les CTRL+... vraiment utiles : récupérez les lignes qui vous intéressent dans
-"ce mswin.vim.
 
 "Activation de la coloration et de l'intendation
 syn on
@@ -50,9 +44,10 @@ set incsearch
 
 "Complétion
 set wmnu "affiche le menu
-set wildmode=list:longest,list:full "affiche toutes les possibilités
+"set wildmode=list:longest,list:full "affiche toutes les possibilités
+set wildmode=longest,full "affiche toutes les possibilités
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz "ignorer certains types de fichiers pour la complétion des includes
-imap <Tab> <C-X><C-F>
+"imap <Tab> <C-X><C-F>
 
 "Folding
 set foldmethod=indent "va fold selon indentation
@@ -76,7 +71,6 @@ endfunction
 "Afficher la ligne du curseur
 "set cursorline 
 
-imap <C-Space> <C-X><C-O>
 iab #i #include
 
 
@@ -146,9 +140,6 @@ inoremap <F12> <Esc>:!ctags -R --c++-kinds=+pv --fields=+iaS --extra=+q .<cr>
 
 "set foldmethod=indent
 
-"naviguer entre onglet en faisant Ctrl+haut et Ctrl+bas plutôt que gt et gT
-noremap <C-down> gt
-noremap <C-up> gT
 "naviguer entre fenêtres
 noremap <S-W> <C-W>
 
@@ -220,15 +211,20 @@ cno jj <Esc>
 vno v <Esc>
 "Save with zs
 noremap zs :w<CR>
-noremap <C-h> b
-noremap <C-l> w
+"noremap <C-h> b
+"noremap <C-l> w
 
 set pastetoggle=<F3>
 
-"syntax color
+
+"################
+"###   look   ###
+"################
+
+"syntax code
 hi Statement ctermfg=yellow
 
-"Peaufinement esthétique des onglets
+"### tab ###
 hi TabLineFill cterm=none
 hi TabLineFill ctermbg=14
 hi TabLine ctermfg=14
@@ -237,25 +233,31 @@ hi TabLine cterm=none
 hi TabLine cterm=reverse
 hi TabLineSel ctermbg=none
 hi TabLineSel ctermfg=white
-"Peaufinement esthétique des replis
+
+"### fold ###
 hi Folded ctermfg=cyan ctermbg=black
-"Peaufinement esthétique pour popup completion
+
+"### popup completion ###
 hi Pmenu ctermbg=black
 hi Pmenu ctermfg=darkcyan
 hi PmenuSel ctermfg=yellow ctermbg=black
 hi PmenuSbar ctermfg=black ctermbg=black
-"Peaufinement des line number
+
+"### line number ###
 "hi LineNr ctermfg=65
 hi LineNr ctermfg=14
 hi SpellBad ctermbg=none ctermfg=red
-"Peaufinement esthétique des match parenthesis
+
+"### parenthesis match ###
 hi MatchParen cterm=bold ctermfg=yellow ctermbg=darkblue
-"Peaufinement esthétique du visual mode 
+
+"### visual mode ###
 hi Visual cterm=reverse ctermbg=black
-"Peaufinement esthétique des windows split 
+
+"### windows split ###
 hi VertSplit ctermbg=none ctermfg=black
-hi StatusLine ctermfg=black ctermbg=green
-hi StatusLineNC ctermfg=black ctermbg=white
+hi StatusLine ctermfg=14 ctermbg=0
+hi StatusLineNC ctermfg=14 ctermbg=0
 
 "persistent undo
 set undofile
@@ -311,7 +313,7 @@ map g# ^ijkki##################################################################
 "map à 0
 
 "ouvrir fichier sous curseur dans nouvel onglet
-map gf <C-w>gf
+"map gf <C-w>gf
 map gF :!gnome-open <cfile> <CR>
 map zqq :tabdo q!
 
@@ -337,43 +339,45 @@ au InsertEnter * hi StatusLine term=reverse ctermbg=4
 au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
 
 
+"##################
+"###   Plugin   ###
+"##################
 
 ""Vundle -> manage vim bundle
 ""git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
  set nocompatible               " be iMproved
  filetype off                   " required!
-"
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 "let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-
-Bundle 'ervandew/supertab'
-
-Bundle 'scrooloose/nerdtree'
-map gh <leader>c<leader>
-
-Bundle 'scrooloose/nerdcommenter'
+"required!
+Bundle 'gmarik/vundle'            
+Bundle 'ervandew/supertab'       
+Bundle 'scrooloose/nerdtree'    
 map gn :silent NERDTreeToggle <CR>
-
-Bundle 'kien/ctrlp.vim'
-map <C-b> :silent CtrlPBuffer <CR>
-map <C-b> :ls<CR>:b
+Bundle 'scrooloose/nerdcommenter'
+map gh <leader>c<leader>
+Bundle 'kien/ctrlp.vim'         
+map <C-b> :silent CtrlPMRU <CR>
+"map <C-b> :ls<CR>:b 
+nmap <C-l> :bn<CR> 
+nmap <C-h> :b#<CR> 
+let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_prompt_mappings = {
-      \ 'PrtSelectMove("j")': ['<c-j>', '<down>', 'J'],
-      \ 'PrtSelectMove("k")': ['<c-k>', '<up>', 'K'],
-      \ 'PrtHistory(-1)': ['<c-n>'],
-      \ 'PrtHistory(1)': ['<c-p>'],
-      \ 'ToggleFocus()': ['<c-i>'],
-      \ }
-let g:ctrlp_match_window_reversed = 0 "CtrlP on top of screen
-
+	\ 'PrtSelectMove("j")': ['<tab>', '<down>', 'J', '<c-l>'],
+	\ 'PrtSelectMove("k")': ['<s-tab>', '<up>', 'K', '<c-h>'],
+	\ 'PrtCurLeft()': ['<c-m>'],
+	\ 'PrtCurRight()': ['<c-q>'],
+	\ }
+    "\ 'PrtHistory(-1)': ['<c-n>'],
+    "\ 'PrtHistory(1)': ['<c-p>'],
+    "\ 'ToggleFocus()': ['<c-i>'],
+    "\ 'PrtExpandDir()': ['<c-i>'],
+let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
 Bundle 'kikijump/tslime.vim.git' 
-
 "Not fully supported by vundle
 "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
-
 Bundle 'MrJJJ/csv.vim.git'
 	hi default CSVColumnHeaderEven term=bold guibg=none
 	hi default CSVColumnHeaderOdd term=bold guibg=none
@@ -382,17 +386,20 @@ Bundle 'MrJJJ/csv.vim.git'
 	hi default CSVDelimiter term=bold guibg=none
 	let g:csv_no_conceal=1
 	nmap gcsv :%ArrangeColumn<CR>
+Bundle 'Lokaltog/vim-powerline.git'
+"let g:Powerline_symbols='fancy'
+
 "Bundle 'kakkyz81/evervim.git'
 "let g:evervim_devtoken='S=s6:U=d1042:E=1443bcc495e:C=13ce41b1d5f:P=1cd:A=en-devtoken:H=010e07ce2cf08e48fd0863997c293964'
  
- "Bundle 'tpope/vim-fugitive'
+ "Bundle 'tpope/vim-fugitive'        "Manage git
  "Bundle 'Lokaltog/vim-easymotion'
  "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
  " vim-scripts repos
 " Bundle 'L9'
  "Bundle 'FuzzyFinder'
  " non github repos
- "Bundle 'git://git.wincent.com/command-t.git'
+"Bundle 'git://git.wincent.com/command-t.git'
  " ...
  filetype plugin indent on     " required!
  "
@@ -436,8 +443,16 @@ Bundle 'MrJJJ/csv.vim.git'
    "endif
    "
   
-"""TOGGLE SETTING"""
-"Toggle spell check
+"###########################
+"###   TOGGLE SETTING   ###
+"###########################
 nmap <leader>ss :set spell!<CR>
 nmap <leader>sl :set list!<CR>
-nmap <leader>slz :set list!<CR>
+nmap <leader>slz :set lazyredrawn!<CR>
+nmap <leader>sw :set wrap!<CR>
+
+
+"###################
+"###   MAPPING   ###
+"###################
+map <leader>lv :!ls > .lv<CR> :e .lv<CR>
