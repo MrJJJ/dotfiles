@@ -126,7 +126,7 @@ PERL5LIB=$PERL5LIB:$HOME/perl/ensembl/modules
 export DBUS_SESSION_BUS_ADDRESS=$(tr '\0' '\n' < /proc/$(pgrep -U $(whoami) gnome-session)/environ|grep ^DBUS_SESSION_BUS_ADDRESS=|cut -d= -f2-)
 
 #welcome
-alias tmux='TERM=xterm-256color tmux'
+alias tmux='TERM=screen-256color tmux'
 [[ $TERM != "screen-256color" ]] && tmux #&& exit
 
 #vim mode
