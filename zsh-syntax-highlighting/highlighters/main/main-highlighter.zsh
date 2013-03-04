@@ -40,14 +40,14 @@
 : ${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
 : ${ZSH_HIGHLIGHT_STYLES[commandseparator]:=none}
 : ${ZSH_HIGHLIGHT_STYLES[hashed-command]:=fg=green}
-: ${ZSH_HIGHLIGHT_STYLES[path]:=underline}
+: ${ZSH_HIGHLIGHT_STYLES[path]:=fg=14}
 : ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=blue}
 : ${ZSH_HIGHLIGHT_STYLES[history-expansion]:=fg=blue}
 : ${ZSH_HIGHLIGHT_STYLES[single-hyphen-option]:=none}
 : ${ZSH_HIGHLIGHT_STYLES[double-hyphen-option]:=none}
 : ${ZSH_HIGHLIGHT_STYLES[back-quoted-argument]:=none}
-: ${ZSH_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=yellow}
-: ${ZSH_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=yellow}
+: ${ZSH_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=red}
+: ${ZSH_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=red}
 : ${ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]:=fg=cyan}
 : ${ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]:=fg=cyan}
 : ${ZSH_HIGHLIGHT_STYLES[assign]:=none}
