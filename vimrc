@@ -96,6 +96,7 @@ au BufRead,BufNewFile *.R set filetype=r
 au BufRead,BufNewfile *.fas set filetype=align
 au BufRead,BufNewfile *.fasta set filetype=align
 au BufRead,BufNewfile *.tex set filetype=tex
+au BufRead,BufNewfile *.md set filetype=markdown
 
 set dictionary+=/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/french
@@ -216,6 +217,10 @@ noremap zs :w<CR>
 
 set pastetoggle=<F3>
 
+nmap ù :
+nmap <leader><leader> /
+nmap ! /
+
 
 "################
 "###   look   ###
@@ -268,8 +273,8 @@ set undolevels=100
 map è `
 
 "point
-noremap ; .
-noremap . ;
+"noremap ; .
+"noremap . ;
 
 "Envoyer à bash
 map gb :.w !bash
@@ -375,7 +380,7 @@ let g:ctrlp_prompt_mappings = {
     "\ 'ToggleFocus()': ['<c-i>'],
     "\ 'PrtExpandDir()': ['<c-i>'],
 let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
-Bundle 'kikijump/tslime.vim.git' 
+Bundle 'MrJJJ/tslime.vim.git' 
 "Not fully supported by vundle
 "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
 Bundle 'MrJJJ/csv.vim.git'
