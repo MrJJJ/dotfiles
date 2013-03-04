@@ -108,7 +108,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 #Open all filenames in vim
-function lv() {ls "$@" | vim - ;} #ouvrir un ls dans vim
+function lv() {ls "$@" | vim - -c ":w! .lv" ;} #ouvrir un ls dans vim
 
 #Archive
 extract () {
