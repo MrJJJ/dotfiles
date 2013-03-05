@@ -227,7 +227,7 @@ set pastetoggle=<F3>
 
 nmap ù q:i
 nmap <leader><leader> /
-nmap ! q/
+nmap ! q/i
 
 
 "################
