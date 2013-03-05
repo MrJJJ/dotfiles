@@ -18,6 +18,9 @@ set autochdir
 "Afficher les n° de ligne
 set nu
 
+"Delay for key combination mapping
+set timeoutlen=1000 ttimeoutlen=100
+
 "Activer la souris dans vim (dans gvim elle est déjà active)
 set mouse=a
 set mouse=r
@@ -91,6 +94,11 @@ set backupdir=$HOME/.vimbackup "Le dossier où seront placés vos backup
 "ouvrir les fichiers word et openoffice
 au BufReadCmd *.docx,*.xlsx,*.pptx call zip#Browse(expand("<amatch>"))
 au BufReadCmd *.odt,*.ott,*.ods,*.ots,*.odp,*.otp,*.odg,*.otg call zip#Browse(expand("<amatch>"))
+
+"####################
+"###   Filetype   ###
+"####################
+"
 "gerer le *.R
 au BufRead,BufNewFile *.R set filetype=r 
 au BufRead,BufNewfile *.fas set filetype=align
@@ -217,13 +225,14 @@ noremap zs :w<CR>
 
 set pastetoggle=<F3>
 
-nmap ù :
+nmap ù q:i
 nmap <leader><leader> /
-nmap ! /
+nmap ! q/i
 
 
 "################
 "###   look   ###
+"
 "################
 
 "syntax code
@@ -239,22 +248,26 @@ hi TabLine cterm=reverse
 hi TabLineSel ctermbg=none
 hi TabLineSel ctermfg=white
 
-"### fold ###
-hi Folded ctermfg=cyan ctermbg=black
 
 "### popup completion ###
 hi Pmenu ctermbg=black
-hi Pmenu ctermfg=darkcyan
+hi Pmenu ctermfg=14
 hi PmenuSel ctermfg=yellow ctermbg=black
 hi PmenuSbar ctermfg=black ctermbg=black
+hi PmenuThumb ctermfg=14 ctermbg=none
 
 "### line number ###
-"hi LineNr ctermfg=65
+"hi LineNr ctermbg=236
+hi LineNr ctermbg=none
 hi LineNr ctermfg=14
 hi SpellBad ctermbg=none ctermfg=red
 
+"### fold ###
+hi Folded ctermfg=cyan ctermbg=none
+"hi Folded ctermfg=cyan ctermbg=236
+
 "### parenthesis match ###
-hi MatchParen cterm=bold ctermfg=yellow ctermbg=darkblue
+hi MatchParen cterm=bold ctermfg=yellow ctermbg=black
 
 "### visual mode ###
 hi Visual cterm=reverse ctermbg=black
@@ -292,16 +305,6 @@ let g:tex_fold_enabled=0
 "Envoyer à python
 map gp :w !python3.2 %
 
-"Commenter
-map gh :.s/^/#/g <Enter>
-vmap gh :s/^/#/g <Enter>
-map gH :.s/^#//g <Enter>
-vmap gH :s/^#//g <Enter>
-
-map g/ :.s/^/\/\//g <Enter>
-vmap g/ :s/^/\/\//g <Enter>
-map g: :.s/^\/\///g <Enter>
-vmap g: :s/^\/\///g <Enter>
 
 map g# ^ijkki################################################################################jkyyjpki###   jk$a   ###jkkld$jjld$
 
@@ -318,7 +321,7 @@ map g# ^ijkki##################################################################
 "map à 0
 
 "ouvrir fichier sous curseur dans nouvel onglet
-"map gf <C-w>gf
+map gf :w<CR>:e <cfile><CR>
 map gF :!gnome-open <cfile> <CR>
 map zqq :tabdo q!
 
@@ -375,10 +378,6 @@ let g:ctrlp_prompt_mappings = {
 	\ 'PrtCurLeft()': ['<c-m>'],
 	\ 'PrtCurRight()': ['<c-q>'],
 	\ }
-    "\ 'PrtHistory(-1)': ['<c-n>'],
-    "\ 'PrtHistory(1)': ['<c-p>'],
-    "\ 'ToggleFocus()': ['<c-i>'],
-    "\ 'PrtExpandDir()': ['<c-i>'],
 let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
 Bundle 'MrJJJ/tslime.vim.git' 
 "Not fully supported by vundle
