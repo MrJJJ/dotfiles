@@ -392,11 +392,13 @@ Bundle 'MrJJJ/csv.vim.git'
 	nmap gcsv :%ArrangeColumn<CR>
 Bundle 'Lokaltog/vim-powerline.git'
 "let g:Powerline_symbols='fancy'
+let g:Powerline_colorsheme = 'solarized256'
+Bundle 'davidhalter/jedi.git'
+Bundle 'tpope/vim-fugitive'
 
 "Bundle 'kakkyz81/evervim.git'
 "let g:evervim_devtoken='S=s6:U=d1042:E=1443bcc495e:C=13ce41b1d5f:P=1cd:A=en-devtoken:H=010e07ce2cf08e48fd0863997c293964'
  
- "Bundle 'tpope/vim-fugitive'        "Manage git
  "Bundle 'Lokaltog/vim-easymotion'
  "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
  " vim-scripts repos
