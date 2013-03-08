@@ -42,6 +42,8 @@ set softtabstop=4
 
 "Recherche
 set incsearch
+set hlsearch
+nnoremap <Esc> :nohl<CR><Esc>
 "set ignorecase
 "set smartcase
 
@@ -79,10 +81,6 @@ iab #i #include
 
 set autoindent "Auto-indentation
 
-set incsearch     "Recherche par incrémentation
-"set hlsearch
-"autocmd InsertEnter * :let @/=""
-"autocmd InsertLeave * :let @/=""
 
 set backup "Active le backup de vos fichiers en cas de plantage
 set backupdir=$HOME/.vimbackup "Le dossier où seront placés vos backup
@@ -277,6 +275,15 @@ hi VertSplit ctermbg=none ctermfg=black
 hi StatusLine ctermfg=14 ctermbg=0
 hi StatusLineNC ctermfg=14 ctermbg=0
 
+"### windows split ###
+hi VertSplit ctermbg=none ctermfg=black
+hi StatusLine ctermfg=14 ctermbg=0
+hi StatusLineNC ctermfg=14 ctermbg=0
+
+"### search ###
+hi search cterm=reverse ctermfg=black
+
+
 "persistent undo
 set undofile
 set undodir=$HOME/.vim/undo
@@ -395,7 +402,8 @@ Bundle 'Lokaltog/vim-powerline.git'
 let g:Powerline_colorsheme = 'solarized256'
 Bundle 'davidhalter/jedi.git'
 Bundle 'tpope/vim-fugitive'
-map <leader>gg :Git add %<CR> :Gcommit<CR>
+map <leader>gg :Git add %<CR> :Gcommit<CR>i
+map <leader>gp :Git push<CR>
 
 "Bundle 'kakkyz81/evervim.git'
 "let g:evervim_devtoken='S=s6:U=d1042:E=1443bcc495e:C=13ce41b1d5f:P=1cd:A=en-devtoken:H=010e07ce2cf08e48fd0863997c293964'
