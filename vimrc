@@ -64,6 +64,17 @@ function! MyFoldFunction()
 	let lines = v:foldend - v:foldstart + 1
 	return v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
 endfunction
+
+
+"Relative number only in normal mode
+"set rnu
+"au InsertEnter * :set nu
+"au InsertLeave * :set rnu
+"au FocusLost * :set nu
+"au FocusGained * :set rnu
+
+
+
 "set foldmethod=syntax "Réduira automatiquement les fonctions et blocs (#region en C# par exemple)
 "set foldtext=MyFoldFunction() "on utilise notre fonction (optionnel)
 
@@ -284,10 +295,14 @@ hi StatusLineNC ctermfg=14 ctermbg=0
 hi search cterm=reverse ctermfg=black
 
 
-"persistent undo
-set undofile
-set undodir=$HOME/.vim/undo
-set undolevels=100
+"Dotfiles of vim (swp, undofile...)
+if isdirectory($HOME . '/.vim/bck') == 0
+  :silent !mkdir -p ~/.vim/bck >/dev/null 2>&1
+endif
+set undofile "persistent undo
+set undolevels=100 "100 persistent undo available
+set undodir=~/.vim/bck// "save undofile in .vim/bck
+set directory=~/.vim/bck// "save swap files in .vim/bck
 
 "marques
 map è `
@@ -397,14 +412,23 @@ Bundle 'MrJJJ/csv.vim.git'
 	hi default CSVDelimiter term=bold guibg=none
 	let g:csv_no_conceal=1
 	nmap gcsv :%ArrangeColumn<CR>
+
 Bundle 'Lokaltog/vim-powerline.git'
 "let g:Powerline_symbols='fancy'
 let g:Powerline_colorsheme = 'solarized256'
+
 Bundle 'davidhalter/jedi.git'
+
 Bundle 'tpope/vim-fugitive'
 map <leader>gg :Git add %<CR> :Gcommit<CR>i
 map <leader>gp :Git push<CR>
 
+Bundle 'SirVer/ultisnips.git'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+
+"Bundle 'hsitz/VimOrganizer.git'
 "Bundle 'kakkyz81/evervim.git'
 "let g:evervim_devtoken='S=s6:U=d1042:E=1443bcc495e:C=13ce41b1d5f:P=1cd:A=en-devtoken:H=010e07ce2cf08e48fd0863997c293964'
  
