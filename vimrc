@@ -205,18 +205,14 @@ function! CSVH(colnr)
 endfunction
 command! -nargs=1 Csv :call CSVH(<args>)
 
-"auto close bracket
-":inoremap ( ()<Esc>i
-":inoremap " ""<Esc>i
-":inoremap [ []<Esc>i
 
 "global paperclip --> sudo apt-get install vim-gtk pour avoir ça dans la console sous ubuntu
 noremap Y "+y
 noremap YY "+yy
 noremap P "+p
 
-"mapleader sur espace (commenter en faisant space c space avec nerdcommenter)
-let mapleader = " "
+"mapleader sur espace
+let mapleader = "\<space>"
 
 "titre de la fenêtre hérite du titre du doc
 set title
@@ -425,8 +421,8 @@ map <leader>gp :Git push<CR>
 
 Bundle 'SirVer/ultisnips.git'
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+let g:UltiSnipsJumpForwardTrigger="g<tab>"
+let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
 
 "Bundle 'hsitz/VimOrganizer.git'
 "Bundle 'kakkyz81/evervim.git'
