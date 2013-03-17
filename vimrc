@@ -225,6 +225,10 @@ cno jj <Esc>
 vno v <Esc>
 "Save with zs
 noremap zs :w<CR>
+noremap Z :w<CR>
+noremap ZZ :x<CR>
+noremap ZQ :q!<CR>
+map zq :bd<CR>
 "noremap <C-h> b
 "noremap <C-l> w
 
@@ -341,7 +345,6 @@ map g# ^ijkki##################################################################
 "ouvrir fichier sous curseur dans nouvel onglet
 map gf :w<CR>:e <cfile><CR>
 map gF :!gnome-open <cfile> <CR>
-map zqq :tabdo q!
 
 "view csv
 map gc :set nowrap \| :%!column -t -s,<Enter>
