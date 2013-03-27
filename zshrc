@@ -62,10 +62,12 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
-#hostname completion : ~/.ssh/config MUST contain HashKnownHosts no
-local knownhosts
-knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} ) 
-zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
+#zsh completion on scp ssh sftp
+echo 'HashKnownHosts no' > ~/.ssh/config
+if [ -f ~/.ssh/known_hosts ]; then
+zstyle ':completion:*' hosts $( sed 's/[, ].*$//' $HOME/.ssh/known_hosts )
+zstyle ':completion:*:*:(ssh|scp|sftp):*:*' hosts `sed 's/^\([^ ,]*\).*$/\1/' ~/.ssh/known_hosts`
+fi
 
 #unsetopt list_ambiguous #Faire qu'au premier tab il y est la liste de toutes les possibilités+partie commune puis rotation entre elles
 
@@ -135,7 +137,7 @@ extract () {
 ####################################
 ###   # VARIABLE ENVIRONNEMENT   ###
 ####################################
-export PYTHONPATH="/home/$USER/python"
+export PYTHONPATH=/home/$USER/jpy
 
 #######################
 ###   #TMUX STUFF   ###
