@@ -234,9 +234,10 @@ map zq :bd<CR>
 
 set pastetoggle=<F3>
 
-nmap ù q:i
+nmap m q:i
+noremap ù m
 nmap <leader><leader> /
-nmap ! q/i
+nmap ! /
 
 
 "################
@@ -403,14 +404,14 @@ let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
 Bundle 'MrJJJ/tslime.vim.git' 
 "Not fully supported by vundle
 "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
-Bundle 'MrJJJ/csv.vim.git'
-	hi default CSVColumnHeaderEven term=bold guibg=none
-	hi default CSVColumnHeaderOdd term=bold guibg=none
-	hi default CSVColumnEven term=bold guibg=none
-	hi default CSVColumnOdd term=bold guibg=none
-	hi default CSVDelimiter term=bold guibg=none
-	let g:csv_no_conceal=1
-	nmap gcsv :%ArrangeColumn<CR>
+"Bundle 'MrJJJ/csv.vim.git'
+	"hi default CSVColumnHeaderEven term=bold guibg=none
+	"hi default CSVColumnHeaderOdd term=bold guibg=none
+	"hi default CSVColumnEven term=bold guibg=none
+	"hi default CSVColumnOdd term=bold guibg=none
+	"hi default CSVDelimiter term=bold guibg=none
+	"let g:csv_no_conceal=1
+	"nmap gcsv :%ArrangeColumn<CR>
 
 Bundle 'Lokaltog/vim-powerline.git'
 "let g:Powerline_symbols='fancy'
@@ -419,7 +420,7 @@ let g:Powerline_colorsheme = 'solarized256'
 Bundle 'davidhalter/jedi.git'
 
 Bundle 'tpope/vim-fugitive'
-map <leader>gg :Git add %<CR> :Gcommit<CR>i
+map <leader>gg :!git add %<CR> :Gcommit<CR>i
 map <leader>gp :Git push<CR>
 
 Bundle 'SirVer/ultisnips.git'
