@@ -43,9 +43,9 @@ set softtabstop=4
 "Recherche
 set incsearch
 set hlsearch
-nnoremap <Esc> :nohl<CR><Esc>
+nnoremap <C-c> :nohl<CR><Esc>
 "set ignorecase
-"set smartcase
+set smartcase
 
 "Complétion
 set wmnu "affiche le menu
