@@ -242,7 +242,6 @@ nmap ! /
 
 "################
 "###   look   ###
-"
 "################
 
 "syntax code
@@ -275,6 +274,45 @@ hi SpellBad ctermbg=none ctermfg=red
 "### fold ###
 hi Folded ctermfg=cyan ctermbg=none
 "hi Folded ctermfg=cyan ctermbg=236
+function! MyFoldText() " {{{2
+    let suba = getline(v:foldstart)
+    let suba = substitute(suba, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    let suba = substitute(suba, '\s*$', '', '')
+    let subb = getline(v:foldend)
+    "let subb = substitute(subb, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    "let subb = substitute(subb, '^\s*', '', '')
+    "let subb = substitute(subb, '\s*$', '', '')
+    let lines = v:foldend - v:foldstart + 1
+    let text = suba
+    "if lines > 1 && strlen(subb) > 0
+    "let text .= ' ... '.subb
+    "endif
+    let fillchar = matchstr(&fillchars, 'fold:.')
+    if strlen(fillchar) > 0
+      let fillchar = fillchar[-1:]
+    else
+      let fillchar = '-'
+    endif
+    let lines = repeat(fillchar, 4).' ' . lines . ' lines '.repeat(fillchar, 3)
+    if has('float')
+      let nuw = max([float2nr(log10(line('$')))+3, &numberwidth])
+    else
+      let nuw = &numberwidth
+    endif
+    let n = winwidth(winnr()) - &foldcolumn - nuw - strlen(lines)
+    let text = text[:min([strlen(text), n])]
+    if text[-1:] != ' '
+      if strlen(text) < n
+        let text .= ' '
+      else
+        let text = substitute(text, '\s*.$', '', '')
+      endif
+    endif
+    let text .= repeat('-', n - strlen(text))
+    let text .= lines
+    return text
+  endfunction
+set foldtext=MyFoldText()
 
 "### parenthesis match ###
 hi MatchParen cterm=bold ctermfg=yellow ctermbg=black
