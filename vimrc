@@ -44,7 +44,6 @@ set softtabstop=4
 set incsearch
 set hlsearch
 nnoremap <C-c> :nohl<CR><Esc>
-"set ignorecase
 set smartcase
 
 "Complétion
@@ -160,6 +159,7 @@ inoremap <F12> <Esc>:!ctags -R --c++-kinds=+pv --fields=+iaS --extra=+q .<cr>
 
 "naviguer entre fenêtres
 noremap <S-W> <C-W>
+noremap <C-L> <C-W>
 
 nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
 
@@ -487,8 +487,10 @@ let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
 "###########################
 nmap <leader>ss :set spell!<CR>
 nmap <leader>sl :set list!<CR>
-nmap <leader>slz :set lazyredrawn!<CR>
+nmap <leader>sz :set lazyredrawn!<CR>
 nmap <leader>sw :set wrap!<CR>
+nmap <leader>sp :set paste!<CR>
+nmap <leader>si :set ic!<CR>
 
 
 "###################
