@@ -194,7 +194,8 @@ done )
 
 #xcape
 #sudo apt-get install git gcc make libx11-dev libxtst-dev pkg-config
-#cd ~/app/xcape
+#mkdir ~/source/xcape
+#cd ~/source/xcape
 #git clone https://github.com/alols/xcape.git .
 #make
 #cp xcape ~/bin
