@@ -1,0 +1,4 @@
+set completion-ignore-case on
+
+set editing-mode vi
+"jk":vi-movement-mode
