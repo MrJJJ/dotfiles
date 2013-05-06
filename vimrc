@@ -1,19 +1,14 @@
-set nocompatible
-
 "Activation de la coloration et de l'intendation
-syn on
-set syntax=on
-syntax enable
-"colorscheme 256_jungle
-filetype indent on
 filetype plugin on
-set autoindent
-colorscheme default
-set t_Co=256
 set runtimepath+=/usr/share/vim/addons/
 
 "working directory same as file you are editing
 set autochdir
+
+"Copy Paste
+if has("unnamedplus") && has("xterm_clipboard")
+set clipboard=unnamedplus
+endif
 
 "Afficher les n° de ligne
 set nu
@@ -92,8 +87,8 @@ iab #i #include
 set autoindent "Auto-indentation
 
 
-set backup "Active le backup de vos fichiers en cas de plantage
-set backupdir=$HOME/.vimbackup "Le dossier où seront placés vos backup
+"set backup "Active le backup de vos fichiers en cas de plantage
+"set backupdir=$HOME/.vimbackup "Le dossier où seront placés vos backup
 
 "set scrolloff=5 "Keeps cursor x lines from the bottom of the screen
 
@@ -102,6 +97,7 @@ set backupdir=$HOME/.vimbackup "Le dossier où seront placés vos backup
 "ouvrir les fichiers word et openoffice
 au BufReadCmd *.docx,*.xlsx,*.pptx call zip#Browse(expand("<amatch>"))
 au BufReadCmd *.odt,*.ott,*.ods,*.ots,*.odp,*.otp,*.odg,*.otg call zip#Browse(expand("<amatch>"))
+
 
 "####################
 "###   Filetype   ###
@@ -168,24 +164,6 @@ set tabpagemax=50
 
 
 "AUTOCOMPLETION avec tab
-"Use TAB to complete when typing words, else inserts TABs as usual.
-""Uses dictionary and source files to find matching words to complete.
-
-"See help completion for source,
-""Note: usual completion is on <C-n> but more trouble to press all the time.
-"Never type the same word twice and maybe learn a new spellings!
-""Use the Linux dictionary when spelling is in doubt.
-"Window users can copy the file to their machine.
-""function! Tab_Or_Complete()
-""	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-""		return "\<C-N>"
-""	else
-""		return "\<Tab>"
-""	endif
-""endfunction
-"":inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-"":set dictionary="/usr/dict/words"
-""
 let g:SuperTabDefaultCompletionType = "context"
 
 
@@ -232,8 +210,6 @@ map zq :bd<CR>
 "noremap <C-h> b
 "noremap <C-l> w
 
-set pastetoggle=<F3>
-
 nmap m q:i
 noremap ù m
 nmap <leader><leader> /
@@ -243,6 +219,13 @@ nmap ! /
 "################
 "###   look   ###
 "################
+filetype indent on
+set autoindent
+
+syntax enable "enable my syntax
+colorscheme default
+set t_Co=256
+
 
 "syntax code
 hi Statement ctermfg=yellow
