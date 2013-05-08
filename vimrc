@@ -16,8 +16,6 @@ endif
 "Afficher les n° de ligne
 set nu
 
-"Delay for key combination mapping
-set timeoutlen=1000 ttimeoutlen=100
 
 "Activer la souris dans vim (dans gvim elle est déjà active)
 set mouse=a
@@ -36,9 +34,10 @@ set softtabstop=4
 set incsearch
 set hlsearch
 nnoremap <C-c> :nohl<CR><Esc>
+set ignorecase
 set smartcase
 
-"Complétion
+"Completion
 set wmnu "affiche le menu
 "set wildmode=list:longest,list:full "affiche toutes les possibilités
 set wildmode=longest,full "affiche toutes les possibilités
@@ -95,6 +94,25 @@ set autoindent "Auto-indentation
 au BufReadCmd *.docx,*.xlsx,*.pptx call zip#Browse(expand("<amatch>"))
 au BufReadCmd *.odt,*.ott,*.ods,*.ots,*.odp,*.otp,*.odg,*.otg call zip#Browse(expand("<amatch>"))
 
+"Dotfiles of vim (swp, undofile...)
+if isdirectory($HOME . '/.vim/bck') == 0
+  :silent !mkdir -p ~/.vim/bck >/dev/null 2>&1
+endif
+set undofile "persistent undo
+set undolevels=100 "100 persistent undo available
+set undodir=~/.vim/bck// "save undofile in .vim/bck
+set directory=~/.vim/bck// "save swap files in .vim/bck
+
+
+"Turn of scrolling (fastier)
+"set ttyscroll=0
+"Have a fast terminal conection
+set ttyfast
+"Make the status line a little bit more informative.
+"
+"" Make the status line a little bit more informative.
+set statusline=%F%m%r%h%w\ [%p%%]\ <Format=%{&ff}>\ <Type=%Y>\ <%04l,%03v>
+
 
 "####################
 "###   Filetype   ###
@@ -110,18 +128,6 @@ au BufRead,BufNewfile *.md set filetype=markdown
 set dictionary+=/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/french
 
-"Ctag et taglist
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-filetype on
-"lorsque j'appuie sur F12 -> lancer la commande :TlistToggle
-nnoremap <silent> <F11> :TlistToggle<CR> 
-nnoremap <silent> <F12> :TlistOpen<CR> 
-let Tlist_Process_File_Always = 1 "Laisser activer le plugin en permanence
-set statusline=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
-let Tlist_Exit_OnlyWindow = 1
-" prérequis tags
-set nocp
-filetype plugin on
 "
 " " configure tags - add additional tags here or comment out not-used ones
 set tags+=~/.vim/tags/stl
@@ -181,39 +187,6 @@ endfunction
 command! -nargs=1 Csv :call CSVH(<args>)
 
 
-"global paperclip --> sudo apt-get install vim-gtk pour avoir ça dans la console sous ubuntu
-noremap Y "+y
-noremap YY "+yy
-noremap P "+p
-
-"mapleader sur espace
-let mapleader = "\<space>"
-
-"titre de la fenêtre hérite du titre du doc
-set title
-			
-"Escape with kj (from insert and command line mode)  
-inoremap jj <Esc>
-inoremap kk <Esc>
-inoremap jk <Esc>
-inoremap kj <Esc>
-cno jk <Esc>
-vno v <Esc>
-"Save with zs
-noremap zs :w<CR>
-noremap Z :w<CR>
-noremap ZZ :x<CR>
-noremap ZQ :q!<CR>
-map zq :bd<CR>
-
-"Reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
-
-nmap m q:i
-noremap ù m
-nmap <leader><leader> /
-nmap ! /
 
 
 "################
@@ -316,16 +289,46 @@ hi StatusLineNC ctermfg=14 ctermbg=0
 "### search ###
 hi search cterm=reverse ctermfg=black
 
+"###################
+"###   Mapping   ###
+"###################
 
-"Dotfiles of vim (swp, undofile...)
-if isdirectory($HOME . '/.vim/bck') == 0
-  :silent !mkdir -p ~/.vim/bck >/dev/null 2>&1
-endif
-set undofile "persistent undo
-set undolevels=100 "100 persistent undo available
-set undodir=~/.vim/bck// "save undofile in .vim/bck
-set directory=~/.vim/bck// "save swap files in .vim/bck
+"Delay for key combination mapping
+set timeoutlen=1000 ttimeoutlen=100
 
+"global paperclip --> sudo apt-get install vim-gtk pour avoir ça dans la console sous ubuntu
+noremap Y "+y
+noremap YY "+yy
+noremap P "+p
+
+"mapleader sur espace
+let mapleader = "\<space>"
+
+"titre de la fenêtre hérite du titre du doc
+set title
+			
+"Escape with kj (from insert and command line mode)  
+inoremap jj <Esc>
+inoremap kk <Esc>
+inoremap jk <Esc>
+inoremap kj <Esc>
+cno jk <Esc>
+vno v <Esc>
+"Save with zs
+noremap zs :w<CR>
+noremap Z :w<CR>
+noremap ZZ :x<CR>
+noremap ZQ :q!<CR>
+map zq :bd<CR>
+
+"Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+nmap m q:i
+noremap ù m
+nmap <leader><leader> /
+nmap ! /
 "marques
 map è `
 
@@ -352,7 +355,6 @@ map gp :w !python3 %
 
 map g# ^ijkki################################################################################jkyyjpki###   jk$a   ###jkkld$jjld$
 
-
 "map & 1
 "map é 2
 "map " 3
@@ -376,18 +378,12 @@ map gC :set wrap \| :%s/ \+/,/g<Enter>
 map gcsvt :set nowrap \| :%!column -t<Enter>
 map gCSVT :set wrap \| :%s/ \+/\t/g<Enter>
 
-"Turn of scrolling (fastier)
-"set ttyscroll=0
-"Have a fast terminal conection
-set ttyfast
-"Make the status line a little bit more informative.
-"
-"" Make the status line a little bit more informative.
-set statusline=%F%m%r%h%w\ [%p%%]\ <Format=%{&ff}>\ <Type=%Y>\ <%04l,%03v>
 
 " Change the color of the status line.
 au InsertEnter * hi StatusLine term=reverse ctermbg=4
 au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
+
+map <leader>lv :!ls > .lv<CR> :e .lv<CR>
 
 
 "##################
@@ -448,6 +444,19 @@ Bundle 'SirVer/ultisnips.git'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="g<tab>"
 let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
+
+"Ctag et taglist
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+filetype on
+"lorsque j'appuie sur F12 -> lancer la commande :TlistToggle
+nnoremap <silent> <F11> :TlistToggle<CR> 
+nnoremap <silent> <F12> :TlistOpen<CR> 
+let Tlist_Process_File_Always = 1 "Laisser activer le plugin en permanence
+set statusline=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
+let Tlist_Exit_OnlyWindow = 1
+" prérequis tags
+set nocp
+filetype plugin on
 
 "Bundle 'hsitz/VimOrganizer.git'
 "Bundle 'kakkyz81/evervim.git'
@@ -517,4 +526,3 @@ nmap <leader>si :set ic!<CR>
 "###################
 "###   MAPPING   ###
 "###################
-map <leader>lv :!ls > .lv<CR> :e .lv<CR>
