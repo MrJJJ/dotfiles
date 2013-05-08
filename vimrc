@@ -1,3 +1,6 @@
+"automatically reload vimrc when it's saved
+au BufWritePost .vimrc so ~/.vimrc
+
 "Activation de la coloration et de l'intendation
 filetype plugin on
 set runtimepath+=/usr/share/vim/addons/
@@ -5,7 +8,7 @@ set runtimepath+=/usr/share/vim/addons/
 "working directory same as file you are editing
 set autochdir
 
-"Copy Paste
+"Copy Paste in the xclipboard
 if has("unnamedplus") && has("xterm_clipboard")
 set clipboard=unnamedplus
 endif
@@ -20,14 +23,8 @@ set timeoutlen=1000 ttimeoutlen=100
 set mouse=a
 set mouse=r
 
-
 "Afficher les parenthèses correspondantes
 set showmatch
-set showcmd "voir les commandes que je tappe
-
-
-"Modifier la police
-set guifont=Courier\ 12
 
 "Modifier la taille des tabulations
 set tabstop=4
@@ -199,7 +196,8 @@ set title
 inoremap jj <Esc>
 inoremap kk <Esc>
 inoremap jk <Esc>
-cno jj <Esc>
+inoremap kj <Esc>
+cno jk <Esc>
 vno v <Esc>
 "Save with zs
 noremap zs :w<CR>
@@ -207,8 +205,10 @@ noremap Z :w<CR>
 noremap ZZ :x<CR>
 noremap ZQ :q!<CR>
 map zq :bd<CR>
-"noremap <C-h> b
-"noremap <C-l> w
+
+"Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
 
 nmap m q:i
 noremap ù m
@@ -347,7 +347,7 @@ map gLC :w !pdflatex % & chrome-bowser %<.pdf &
 let g:tex_fold_enabled=0
 
 "Envoyer à python
-map gp :w !python3.2 %
+map gp :w !python3 %
 
 
 map g# ^ijkki################################################################################jkyyjpki###   jk$a   ###jkkld$jjld$
