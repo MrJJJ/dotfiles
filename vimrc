@@ -308,10 +308,7 @@ let mapleader = "\<space>"
 set title
 			
 "Escape with kj (from insert and command line mode)  
-inoremap jj <Esc>
-inoremap kk <Esc>
 inoremap jk <Esc>
-inoremap kj <Esc>
 cno jk <Esc>
 vno v <Esc>
 "Save with zs
@@ -444,6 +441,11 @@ Bundle 'SirVer/ultisnips.git'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="g<tab>"
 let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
+"stuff to define my own snippets
+set runtimepath+=~/.vim/bundle
+let g:UltiSnipsSnippetDirectories=["UltiSnips","snippets"]
+
+Bundle 'MrJJJ/snippets.git'
 
 "Ctag et taglist
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
