@@ -35,6 +35,12 @@ HISTFILE=~/.zsh_history
 setopt histignorealldups sharehistory
 setopt AUTO_CD # pas besoin d'écrire cd pour aller dans dossier
 
+###########################
+###   VARIOUS OPTIONS   ###
+###########################
+# Report CPU usage for commands running longer than 10 seconds
+REPORTTIME=10
+
 #######################
 ###   #COMPLETION   ###
 #######################
