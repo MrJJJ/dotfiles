@@ -160,7 +160,8 @@ inoremap <F12> <Esc>:!ctags -R --c++-kinds=+pv --fields=+iaS --extra=+q .<cr>
 noremap <S-W> <C-W>
 noremap <C-L> <C-W>
 
-nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
+nnoremap & :s/<c-r>=expand('<cword>')<cr>//g<left><left>
+nnoremap && :%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>
 
 "Permettre d'ouvrir plus d'onglets qu'autorisé
 set tabpagemax=50
@@ -349,6 +350,7 @@ let g:tex_fold_enabled=0
 "Envoyer à python
 map gp :w !python3 %
 
+map gr :!R -e "library(knitr);spin('%')" && xdotool key alt+Tab && xdotool key ctrl+r && xdotool key alt+Tab
 
 map g# ^ijkki################################################################################jkyyjpki###   jk$a   ###jkkld$jjld$
 
@@ -446,6 +448,10 @@ set runtimepath+=~/.vim/bundle
 let g:UltiSnipsSnippetDirectories=["UltiSnips","snippets"]
 
 Bundle 'MrJJJ/snippets.git'
+
+Bundle 'vim-scripts/Vim-R-plugin.git'
+let vimrplugin_screenplugin = 0
+"Bundle 'Valloric/YouCompleteMe.git'
 
 "Ctag et taglist
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
