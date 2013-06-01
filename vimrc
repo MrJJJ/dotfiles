@@ -9,7 +9,8 @@ set runtimepath+=/usr/share/vim/addons/
 set autochdir
 
 "Copy Paste in the xclipboard
-if has("unnamedplus") && has("xterm_clipboard")
+
+if has("unnamedplus") && has("xterm_clipboard") && hostname() == 'ultra'
 set clipboard=unnamedplus
 endif
 
