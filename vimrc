@@ -372,6 +372,7 @@ map gF :!gnome-open <cfile> <CR>
 
 "view csv
 map gc :set nowrap \| :%!column -t -s,<Enter>
+map gcf :1split \| :set scrollopt=hor,jump \| :set scrollbind \| :wincmd j \| :set scrollbind<Enter>
 map gC :set wrap \| :%s/ \+/,/g<Enter>
 
 "view tsv
