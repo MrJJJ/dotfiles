@@ -182,7 +182,10 @@ f(){ if [ "$PWD" != "$LPWD" ];then LPWD="$PWD"; tmux rename-window ${PWD//*\//};
 ###   	#HANDY TOOLS   ###
 ##########################
 #autojump
-#https://github.com/joelthelion/autojump/downloads
+#git clone git://github.com/joelthelion/autojump.git
+#Run the installation script:
+#cd autojump
+#./install.sh [ --local ]
 [[ -f ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
 
@@ -209,6 +212,7 @@ if [ -z $XCAPE ] ; then
 	export XCAPE=1
 	killall xcape
 	xcape -e 'Caps_Lock=Escape'
+	#xcape -e 'Caps_Lock=Escape;ISO_Group_Shift=space'
 fi
 
 source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
