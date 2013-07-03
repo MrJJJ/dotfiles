@@ -144,6 +144,7 @@ extract () {
 ###   # VARIABLE ENVIRONNEMENT   ###
 ####################################
 export PYTHONPATH=/home/$USER/jpy
+export PATH=$PATH:$HOME/bin/
 
 #######################
 ###   #TMUX STUFF   ###
