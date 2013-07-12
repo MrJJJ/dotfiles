@@ -339,6 +339,10 @@ map è `
 map gb :.w !bash
 vmap gb :w !bash
 
+map gbb ^"1y$:!echo "# >>> <C-R>1\n # `date +\%d-\%m-\%y\ \%kh\%Mm\%Ss` --->">>.%_out<C-F>:s/#/\\#/g<CR>i<CR><CR>:.w !bash >> .%_out<CR>A<esc>:read !date +\%d-\%m-\%y<CR>kJli#<esc>^:w<CR>gBG?--><CR>:read !echo `date +\%d-\%m-\%y\ \%kh\%Mm\%Ss`<CR>kJ:w<CR>:b#<CR><C-C>
+vnoremap gbb :normal gbb<CR>
+map gB :e .%_out<CR>
+
 "Latex
 "Envoyer à latex
 map gl :w !pdflatex % & okular %<.pdf &
