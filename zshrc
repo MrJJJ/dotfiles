@@ -201,6 +201,17 @@ echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;
 done )
 }
 
+li() # ls and ignore a pattern
+{
+if [ ! -f .li ]
+then
+	echo "Pattern to ignore ?"
+	read newPattern
+	echo $newPattern > .li
+fi
+pattern=`cat .li`
+ls -I$pattern
+}
 
 #xcape
 #sudo apt-get install git gcc make libx11-dev libxtst-dev pkg-config
@@ -217,3 +228,5 @@ if [ -z $XCAPE ] ; then
 fi
 
 source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
