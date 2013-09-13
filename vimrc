@@ -335,13 +335,15 @@ map è `
 "noremap ; .
 "noremap . ;
 
-"Envoyer à bash
-map gb :.w !bash
-vmap gb :w !bash
-
-map gbb ^"1y$:!echo "# >>> <C-R>1\n # `date +\%d-\%m-\%y\ \%kh\%Mm\%Ss` --->">>.%_out<C-F>:s/#/\\#/g<CR>i<CR><CR>:.w !bash >> .%_out<CR>A<esc>:read !date +\%d-\%m-\%y<CR>kJli#<esc>^:w<CR>gBG?--><CR>:read !echo `date +\%d-\%m-\%y\ \%kh\%Mm\%Ss`<CR>kJ:w<CR>:b#<CR><C-C>
-vnoremap gbb :normal gbb<CR>
-map gB :e .%_out<CR>
+"Envoyer à bash + log in .%_log
+"map gb :.w !bash
+"vmap gb :w !bash
+map gb yy:!echo "\# `date +\%A\ \%d\ \%B\ \%Y\ --\>\ \%kh\ \%Mm\ \%Ss`\n\# >>> <C-R>"<C-H>" >> .%_log<CR>:.w !bash\|tee -a .%_log
+vmap gb y:!echo "\# `date +\%A\ \%d\ \%B\ \%Y\ --\>\ \%kh\ \%Mm\ \%Ss`\n\# >>> <C-R>"<C-H><C-F>:.s/<C-V><C-M>/\\n\\# >>> /g<CR>A" >> .%_log<CR>:w !bash\|tee -a .%_log
+map gbb yy:!echo "\# `date +\%A\ \%d\ \%B\ \%Y\ --\>\ \%kh\ \%Mm\ \%Ss`\n\# >>> <C-R>"<C-H>" >> .%_log<CR>:.w !bash>> .%_log<CR>
+vmap gbb y:!echo "\# `date +\%A\ \%d\ \%B\ \%Y\ --\>\ \%kh\ \%Mm\ \%Ss`\n\# >>> <C-R>"<C-H><C-F>:.s/<C-V><C-M>/\\n\\# >>> /g<CR>A" >> .%_log<CR>:w !bash>> .%_log<CR>
+map gB :w<CR>:e .%_log<CR>G
+map gBB yy:w<CR>:e .%_log<CR>/<C-R>"<C-H><CR>
 
 "Latex
 "Envoyer à latex
@@ -435,9 +437,11 @@ Bundle 'MrJJJ/tslime.vim.git'
 	"let g:csv_no_conceal=1
 	"nmap gcsv :%ArrangeColumn<CR>
 
-Bundle 'Lokaltog/vim-powerline.git'
+"Bundle 'Lokaltog/vim-powerline.git'
 "let g:Powerline_symbols='fancy'
-let g:Powerline_colorsheme = 'solarized256'
+"let g:Powerline_colorsheme = 'solarized256'
+Bundle 'bling/vim-airline.git'
+"let g:airline#extensions#tabline#enabled = 1
 
 Bundle 'davidhalter/jedi.git'
 
@@ -458,6 +462,8 @@ Bundle 'MrJJJ/snippets.git'
 Bundle 'vim-scripts/Vim-R-plugin.git'
 let vimrplugin_screenplugin = 0
 "Bundle 'Valloric/YouCompleteMe.git'
+
+Bundle 'https://github.com/Shougo/unite.vim.git'
 
 "Ctag et taglist
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
