@@ -324,8 +324,9 @@ map zq :bd<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-nmap m q:i
 noremap ù m
+noremap m /
+noremap M :
 nmap <leader><leader> /
 nmap ! /
 "marques
