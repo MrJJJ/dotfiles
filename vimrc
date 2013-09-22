@@ -40,7 +40,9 @@ set smartcase
 "Completion
 set wmnu "affiche le menu
 "set wildmode=list:longest,list:full "affiche toutes les possibilités
-set wildmode=longest,full "affiche toutes les possibilités
+set wildmode=longest:full,full "affiche toutes les possibilités
+set wcm=<C-l>
+cmap <C-h> <C-p>
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz "ignorer certains types de fichiers pour la complétion des includes
 "imap <Tab> <C-X><C-F>
 
@@ -427,7 +429,8 @@ map gh <leader>c<leader>
 
 NeoBundle 'Shougo/unite.vim'
 map <C-b> :Unite -no-split -start-insert file_mru<CR>
-nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
+map <C-l> :b <C-l><C-l>
+"nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
 nmap <Leader><TAB> :ls<cr>:b 
 nmap <C-h> :silent w<CR>:b#<CR>
 let g:unite_source_history_yank_enable = 1
