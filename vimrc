@@ -224,6 +224,7 @@ hi PmenuSel ctermfg=yellow ctermbg=black
 hi PmenuSbar ctermfg=black ctermbg=black
 hi PmenuThumb ctermfg=14 ctermbg=none
 
+
 "### line number ###
 "hi LineNr ctermbg=236
 hi LineNr ctermbg=none
@@ -281,13 +282,8 @@ hi Visual cterm=reverse ctermbg=black
 
 "### windows split ###
 hi VertSplit ctermbg=none ctermfg=black
-hi StatusLine ctermfg=14 ctermbg=0
-hi StatusLineNC ctermfg=14 ctermbg=0
-
-"### windows split ###
-hi VertSplit ctermbg=none ctermfg=black
-hi StatusLine ctermfg=14 ctermbg=0
-hi StatusLineNC ctermfg=14 ctermbg=0
+hi StatusLine ctermbg=white ctermfg=black
+"hi StatusLineNC ctermfg=14 ctermbg=0
 
 "### search ###
 hi search cterm=reverse ctermfg=black
@@ -430,8 +426,9 @@ map gh <leader>c<leader>
 "let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
 
 NeoBundle 'Shougo/unite.vim'
-map <C-b> :Unite -buffer-name=mru -no-split -start-insert file_mru<cr>
-nmap <C-l> :silent w<cr>:Unite -buffer-name=buffer -start-insert -no-split buffer<CR>
+map <C-b> :Unite -no-split -start-insert file_mru<CR>
+nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
+nmap <Leader><TAB> :b 
 nmap <C-h> :silent w<CR>:b#<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <Leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
