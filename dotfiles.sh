@@ -5,7 +5,6 @@
 #git push -u origin master
 
 
-
 files="tmux.conf vimrc zshrc"
 
 mkdir -p ~/.dotfiles
@@ -14,9 +13,8 @@ for f in $files; do
 	ln -s ~/dotfiles/$f ~/.$f
 done
 
-folders='.vim'
-for f in $folders; do
-	rm -rf ~/.dotfiles/$f
-	mv -f ~/$f ~/.dotfiles
-	ln -s ~/dotfiles/$f ~/$f
-done
+#Install NeoBundle
+if [ ! -d ~/.vim/bundle/neobundle.vim ] ; then
+	mkdir -p ~/.vim/bundle
+	git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+fi
