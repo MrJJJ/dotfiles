@@ -1,0 +1,12 @@
+Vim-R-plugin
+jedi
+neobundle.vim
+nerdcommenter
+nerdtree
+snippets
+supertab
+tslime.vim
+ultisnips
+unite.vim
+vim-airline
+vim-fugitive
