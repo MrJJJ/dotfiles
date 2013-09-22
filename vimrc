@@ -17,7 +17,6 @@ endif
 "Afficher les n° de ligne
 set nu
 
-
 "Activer la souris dans vim (dans gvim elle est déjà active)
 set mouse=a
 set mouse=r
@@ -96,13 +95,15 @@ au BufReadCmd *.docx,*.xlsx,*.pptx call zip#Browse(expand("<amatch>"))
 au BufReadCmd *.odt,*.ott,*.ods,*.ots,*.odp,*.otp,*.odg,*.otg call zip#Browse(expand("<amatch>"))
 
 "Dotfiles of vim (swp, undofile...)
-if isdirectory($HOME . '/.vim/bck') == 0
-  :silent !mkdir -p ~/.vim/bck >/dev/null 2>&1
+if isdirectory($HOME . '/.vimbck') == 0
+  :silent !mkdir -p ~/.vimbck >/dev/null 2>&1
 endif
-set undofile "persistent undo
-set undolevels=100 "100 persistent undo available
-set undodir=~/.vim/bck// "save undofile in .vim/bck
-set directory=~/.vim/bck// "save swap files in .vim/bck
+if has('persistent_undo')
+	set undofile "persistent undo
+	set undolevels=100 "100 persistent undo available
+	set undodir=~/.vimbck// "save undofile in .vim/bck
+endif
+set directory=~/.vimbck// "save swap files in .vim/bck
 
 
 "Turn of scrolling (fastier)
@@ -398,38 +399,43 @@ map <leader>lv :!ls > .lv<CR> :e .lv<CR>
 "###   Plugin   ###
 "##################
 
-""Vundle -> manage vim bundle
-""git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
- set nocompatible               " be iMproved
- filetype off                   " required!
+"mkdir -p ~/.vim/bundle
+"git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+set nocompatible               " be iMproved
+filetype off      " required!
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-"let Vundle manage Vundle
-"required!
-Bundle 'gmarik/vundle'            
-Bundle 'ervandew/supertab'       
-Bundle 'scrooloose/nerdtree'    
+NeoBundle 'ervandew/supertab'       
+NeoBundle 'scrooloose/nerdtree'    
 map gn :silent NERDTreeToggle <CR>
-Bundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdcommenter'
 map gh <leader>c<leader>
-Bundle 'kien/ctrlp.vim'         
-map <C-b> :silent CtrlPMRU <CR>
-"map <C-b> :ls<CR>:b 
+"NeoBundle 'kien/ctrlp.vim'         
+NeoBundle 'Shougo/unite.vim'
+map <C-b> :Unite -buffer-name=mru -no-split -start-insert file_mru<cr>
 nmap <C-l> :bn<CR> 
 nmap <C-h> :b#<CR> 
-let g:ctrlp_clear_cache_on_exit=0
-let g:ctrlp_prompt_mappings = {
-	\ 'PrtSelectMove("j")': ['<tab>', '<down>', 'J', '<c-l>'],
-	\ 'PrtSelectMove("k")': ['<s-tab>', '<up>', 'K', '<c-h>'],
-	\ 'PrtCurLeft()': ['<c-m>'],
-	\ 'PrtCurRight()': ['<c-q>'],
-	\ }
-let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
-Bundle 'MrJJJ/tslime.vim.git' 
+"map <C-b> :ls<CR>:b 
+"map <C-b> :silent CtrlPMRU <CR>
+"let g:ctrlp_clear_cache_on_exit=0
+"let g:ctrlp_prompt_mappings = {
+	"\ 'PrtSelectMove("j")': ['<tab>', '<down>', 'J', '<c-l>'],
+	"\ 'PrtSelectMove("k")': ['<s-tab>', '<up>', 'K', '<c-h>'],
+	"\ 'PrtCurLeft()': ['<c-m>'],
+	"\ 'PrtCurRight()': ['<c-q>'],
+	"\ }
+"let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
+
+
+NeoBundle 'MrJJJ/tslime.vim.git' 
 "Not fully supported by vundle
 "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
-"Bundle 'MrJJJ/csv.vim.git'
+"NeoBundle 'MrJJJ/csv.vim.git'
 	"hi default CSVColumnHeaderEven term=bold guibg=none
 	"hi default CSVColumnHeaderOdd term=bold guibg=none
 	"hi default CSVColumnEven term=bold guibg=none
@@ -438,19 +444,19 @@ Bundle 'MrJJJ/tslime.vim.git'
 	"let g:csv_no_conceal=1
 	"nmap gcsv :%ArrangeColumn<CR>
 
-"Bundle 'Lokaltog/vim-powerline.git'
+"NeoBundle 'Lokaltog/vim-powerline.git'
 "let g:Powerline_symbols='fancy'
 "let g:Powerline_colorsheme = 'solarized256'
-Bundle 'bling/vim-airline.git'
+NeoBundle 'bling/vim-airline.git'
 "let g:airline#extensions#tabline#enabled = 1
 
-Bundle 'davidhalter/jedi.git'
+NeoBundle 'davidhalter/jedi.git'
 
-Bundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 map <leader>gg :!git add %<CR> :Gcommit<CR>i
 map <leader>gp :Git push<CR>
 
-Bundle 'SirVer/ultisnips.git'
+NeoBundle 'SirVer/ultisnips.git'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="g<tab>"
 let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
@@ -458,13 +464,21 @@ let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
 set runtimepath+=~/.vim/bundle
 let g:UltiSnipsSnippetDirectories=["UltiSnips","snippets"]
 
-Bundle 'MrJJJ/snippets.git'
+NeoBundle 'MrJJJ/snippets.git'
 
-Bundle 'vim-scripts/Vim-R-plugin.git'
+NeoBundle 'vim-scripts/Vim-R-plugin.git'
 let vimrplugin_screenplugin = 0
-"Bundle 'Valloric/YouCompleteMe.git'
+"NeoBundle 'Valloric/YouCompleteMe.git'
+"
+filetype plugin indent on     " Required!
+ "
+ " Brief help
+ " :NeoBundleList          - list configured bundles
+ " :NeoBundleInstall(!)    - install(update) bundles
+ " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-Bundle 'https://github.com/Shougo/unite.vim.git'
+ " Installation check.
+NeoBundleCheck
 
 "Ctag et taglist
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'

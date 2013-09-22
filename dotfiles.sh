@@ -13,3 +13,10 @@ for f in $files; do
 	mv ~/.$f ~/.dotfiles
 	ln -s ~/dotfiles/$f ~/.$f
 done
+
+folders='.vim'
+for f in $folders; do
+	rm -rf ~/.dotfiles/$f
+	mv -f ~/$f ~/.dotfiles
+	ln -s ~/dotfiles/$f ~/$f
+done
