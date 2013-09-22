@@ -95,15 +95,15 @@ au BufReadCmd *.docx,*.xlsx,*.pptx call zip#Browse(expand("<amatch>"))
 au BufReadCmd *.odt,*.ott,*.ods,*.ots,*.odp,*.otp,*.odg,*.otg call zip#Browse(expand("<amatch>"))
 
 "Dotfiles of vim (swp, undofile...)
-if isdirectory($HOME . '/.vimbck') == 0
-  :silent !mkdir -p ~/.vimbck >/dev/null 2>&1
+if isdirectory($HOME . '/.vim/bck') == 0
+  :silent !mkdir -p ~/.vim/bck >/dev/null 2>&1
 endif
 if has('persistent_undo')
 	set undofile "persistent undo
 	set undolevels=100 "100 persistent undo available
-	set undodir=~/.vimbck// "save undofile in .vim/bck
+	set undodir=~/.vim/bck// "save undofile in .vim/bck
 endif
-set directory=~/.vimbck// "save swap files in .vim/bck
+set directory=~/.vim/bck// "save swap files in .vim/bck
 
 
 "Turn of scrolling (fastier)
