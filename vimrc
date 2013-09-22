@@ -428,7 +428,7 @@ map gh <leader>c<leader>
 NeoBundle 'Shougo/unite.vim'
 map <C-b> :Unite -no-split -start-insert file_mru<CR>
 nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
-nmap <Leader><TAB> :b 
+nmap <Leader><TAB> :ls<cr>:b 
 nmap <C-h> :silent w<CR>:b#<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <Leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
