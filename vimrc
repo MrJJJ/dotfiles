@@ -11,7 +11,7 @@ set autochdir
 "Copy Paste in the xclipboard
 
 if has("unnamedplus") && has("xterm_clipboard") && hostname() == 'ultra'
-set clipboard=unnamedplus
+	set clipboard=unnamedplus
 endif
 
 "Afficher les n° de ligne
@@ -415,13 +415,11 @@ NeoBundle 'scrooloose/nerdtree'
 map gn :silent NERDTreeToggle <CR>
 NeoBundle 'scrooloose/nerdcommenter'
 map gh <leader>c<leader>
+
 "NeoBundle 'kien/ctrlp.vim'         
-NeoBundle 'Shougo/unite.vim'
-map <C-b> :Unite -buffer-name=mru -no-split -start-insert file_mru<cr>
-nmap <C-l> :bn<CR> 
-nmap <C-h> :b#<CR> 
-"map <C-b> :ls<CR>:b 
+""map <C-b> :ls<CR>:b 
 "map <C-b> :silent CtrlPMRU <CR>
+"nmap <C-l> :silent CtrlPBuffer <CR>
 "let g:ctrlp_clear_cache_on_exit=0
 "let g:ctrlp_prompt_mappings = {
 	"\ 'PrtSelectMove("j")': ['<tab>', '<down>', 'J', '<c-l>'],
@@ -430,6 +428,32 @@ nmap <C-h> :b#<CR>
 	"\ 'PrtCurRight()': ['<c-q>'],
 	"\ }
 "let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
+
+NeoBundle 'Shougo/unite.vim'
+map <C-b> :Unite -buffer-name=mru -no-split -start-insert file_mru<cr>
+nmap <C-l> :silent w<cr>:Unite -buffer-name=buffer -start-insert -no-split buffer<CR>
+nmap <C-h> :silent w<CR>:b#<CR>
+let g:unite_source_history_yank_enable = 1
+nnoremap <Leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-l and control-h in insert mode
+  imap <buffer> <C-l>  <Plug>(unite_select_next_line)
+  imap <buffer> <C-h>  <Plug>(unite_select_previous_line)
+endfunction
+
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+
 
 
 NeoBundle 'MrJJJ/tslime.vim.git' 
@@ -447,7 +471,7 @@ NeoBundle 'MrJJJ/tslime.vim.git'
 "NeoBundle 'Lokaltog/vim-powerline.git'
 "let g:Powerline_symbols='fancy'
 "let g:Powerline_colorsheme = 'solarized256'
-NeoBundle 'bling/vim-airline.git'
+"NeoBundle 'bling/vim-airline.git'
 "let g:airline#extensions#tabline#enabled = 1
 
 NeoBundle 'davidhalter/jedi.git'
@@ -469,53 +493,25 @@ NeoBundle 'MrJJJ/snippets.git'
 NeoBundle 'vim-scripts/Vim-R-plugin.git'
 let vimrplugin_screenplugin = 0
 "NeoBundle 'Valloric/YouCompleteMe.git'
-"
-filetype plugin indent on     " Required!
- "
- " Brief help
- " :NeoBundleList          - list configured bundles
- " :NeoBundleInstall(!)    - install(update) bundles
- " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
+"NeoBundle 'vim-scripts/buftabs'
+
+filetype plugin indent on     " Required!
  " Installation check.
 NeoBundleCheck
 
 "Ctag et taglist
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-filetype on
-"lorsque j'appuie sur F12 -> lancer la commande :TlistToggle
-nnoremap <silent> <F11> :TlistToggle<CR> 
-nnoremap <silent> <F12> :TlistOpen<CR> 
-let Tlist_Process_File_Always = 1 "Laisser activer le plugin en permanence
-set statusline=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
-let Tlist_Exit_OnlyWindow = 1
-" prérequis tags
-set nocp
-filetype plugin on
-
-"Bundle 'hsitz/VimOrganizer.git'
-"Bundle 'kakkyz81/evervim.git'
-"let g:evervim_devtoken='S=s6:U=d1042:E=1443bcc495e:C=13ce41b1d5f:P=1cd:A=en-devtoken:H=010e07ce2cf08e48fd0863997c293964'
- 
- "Bundle 'Lokaltog/vim-easymotion'
- "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
- " vim-scripts repos
-" Bundle 'L9'
- "Bundle 'FuzzyFinder'
- " non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
- " ...
- filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
-
+"let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+"filetype on
+""lorsque j'appuie sur F12 -> lancer la commande :TlistToggle
+"nnoremap <silent> <F11> :TlistToggle<CR> 
+"nnoremap <silent> <F12> :TlistOpen<CR> 
+"let Tlist_Process_File_Always = 1 "Laisser activer le plugin en permanence
+"set statusline=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
+"let Tlist_Exit_OnlyWindow = 1
+"" prérequis tags
+"set nocp
+"filetype plugin on
 
 
 "xterm
