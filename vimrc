@@ -380,7 +380,7 @@ function! FillLine( str )
     endif
 endfunction
 
-map g- ^i------ jk:call FillLine('-')
+map g- ^i#------ jk:call FillLine('-')<CR>
 
 "map & 1
 "map é 2
