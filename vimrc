@@ -8,6 +8,9 @@ set runtimepath+=/usr/share/vim/addons/
 "working directory same as file you are editing
 set autochdir
 
+"Automatically see when file change
+set autoread
+
 "Copy Paste in the xclipboard
 
 if has("unnamedplus") && has("xterm_clipboard") && hostname() == 'ultra'
@@ -361,6 +364,8 @@ map gr :!R -e "library(knitr);spin('%')" && xdotool key alt+Tab && xdotool key c
 
 map g# ^ijkki################################################################################jkyyjpki###   jk$a   ###jkkld$jjld$
 
+map g- ^i------jkA-----------------------------------------jkI#jk
+
 "map & 1
 "map é 2
 "map " 3
@@ -428,13 +433,16 @@ map gh <leader>c<leader>
 "let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
 
 NeoBundle 'Shougo/unite.vim'
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
 map <C-b> :Unite -no-split -start-insert file_mru<CR>
 map <C-l> :b <C-l><C-l>
 "nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
 nmap <Leader><TAB> :ls<cr>:b 
 nmap <C-h> :silent w<CR>:b#<CR>
 let g:unite_source_history_yank_enable = 1
-nnoremap <Leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
+nnoremap <Leader>p :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
