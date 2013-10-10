@@ -413,6 +413,7 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
 
 map <leader>lv :!ls > .lv<CR> :e .lv<CR>
 
+nnoremap <leader>l :Unite -buffer-name=search_line line -start-insert<CR>
 
 "##################
 "###   Plugin   ###
@@ -433,7 +434,12 @@ NeoBundle 'ervandew/supertab'
 NeoBundle 'scrooloose/nerdtree'    
 map gn :silent NERDTreeToggle <CR>
 NeoBundle 'scrooloose/nerdcommenter'
+
+NeoBundle 'rhysd/clever-f.vim'
+map ; f
+
 map gh <leader>c<leader>
+
 
 "NeoBundle 'kien/ctrlp.vim'         
 ""map <C-b> :ls<CR>:b 
