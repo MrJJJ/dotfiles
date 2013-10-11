@@ -454,7 +454,7 @@ map gh <leader>c<leader>
 "let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
 
 NeoBundle 'Shougo/unite.vim'
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
 map <C-b> :Unite -no-split -start-insert file_mru<CR>
