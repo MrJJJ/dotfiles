@@ -413,7 +413,6 @@ au InsertLeave * hi StatusLine term=reverse ctermbg=0 ctermbg=2
 
 map <leader>lv :!ls > .lv<CR> :e .lv<CR>
 
-nnoremap <leader>l :Unite -buffer-name=search_line line -start-insert<CR>
 
 "##################
 "###   Plugin   ###
@@ -455,9 +454,9 @@ map gh <leader>c<leader>
 "let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
 
 NeoBundle 'Shougo/unite.vim'
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#sorter_default#use(['sorter_rank'])
+"call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
 map <C-b> :Unite -no-split -start-insert file_mru<CR>
 map <C-l> :b <C-l><C-l>
 "nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
