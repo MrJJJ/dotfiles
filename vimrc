@@ -37,6 +37,7 @@ set softtabstop=4
 set incsearch
 set hlsearch
 nnoremap <C-c> :nohl<CR><Esc>
+nnoremap <ESC> <ESC>:nohlsearch<CR>
 set ignorecase
 set smartcase
 
@@ -59,6 +60,9 @@ function! MyFoldFunction()
 	let lines = v:foldend - v:foldstart + 1
 	return v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
 endfunction
+"save folding
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
 
 
 "Relative number only in normal mode
@@ -485,7 +489,11 @@ NeoBundle 'Shougo/vimproc', {
 
 
 
-NeoBundle 'MrJJJ/tslime.vim.git' 
+"NeoBundle 'MrJJJ/tslime.vim.git' 
+NeoBundle 'jgdavey/tslime.vim.git' 
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 "Not fully supported by vundle
 "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
 "NeoBundle 'MrJJJ/csv.vim.git'
