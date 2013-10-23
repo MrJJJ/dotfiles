@@ -14,7 +14,7 @@ set autoread
 "Copy Paste in the xclipboard
 
 if has("unnamedplus") && has("xterm_clipboard") && hostname() == 'ultra'
-	set clipboard=unnamedplus
+set clipboard=unnamedplus
 endif
 
 "Afficher les n° de ligne
@@ -37,7 +37,15 @@ set softtabstop=4
 set incsearch
 set hlsearch
 nnoremap <C-c> :nohl<CR><Esc>
-nnoremap <ESC> <ESC>:nohlsearch<CR>
+nnoremap i :nohl<CR>i
+nnoremap a :nohl<CR>a
+nnoremap c :nohl<CR>c
+"autocmd cursormoved * set nohlsearch
+"noremap n :set hlsearch<cr>n
+"noremap N :set hlsearch<cr>N
+"noremap / :set hlsearch<cr>/
+"noremap ? :set hlsearch<cr>?
+"nnoremap <ESC> <ESC>:nohlsearch<CR>
 set ignorecase
 set smartcase
 
@@ -55,10 +63,10 @@ set foldmethod=indent "va fold selon indentation
 "set foldmethod=syntax "va fold selon la syntaxe
 set foldlevel=99 "ouvre les folds jusqu'au niveau demandé (99=tous)
 function! MyFoldFunction()
-	let line = getline(v:foldstart)
-	let sub = substitute(line,'/\*\|\*/\|^\s+', '', 'g')
-	let lines = v:foldend - v:foldstart + 1
-	return v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
+let line = getline(v:foldstart)
+let sub = substitute(line,'/\*\|\*/\|^\s+', '', 'g')
+let lines = v:foldend - v:foldstart + 1
+return v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
 endfunction
 "save folding
 autocmd BufWinLeave *.* mkview
@@ -295,7 +303,8 @@ hi StatusLine ctermbg=white ctermfg=black
 "hi StatusLineNC ctermfg=14 ctermbg=0
 
 "### search ###
-hi search cterm=reverse ctermfg=black
+"hi search cterm=reverse ctermfg=black
+hi search ctermfg=14 ctermbg=black
 
 "###################
 "###   Mapping   ###
@@ -462,7 +471,8 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
 map <C-b> :Unite -no-split -start-insert file_mru<CR>
-map <C-l> :b <C-l><C-l>
+"map <C-l> :b <C-l><C-l>
+noremap <C-l> :bn<CR>
 "nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
 nmap <Leader><TAB> :ls<cr>:b 
 nmap <C-h> :silent w<CR>:b#<CR>
@@ -488,12 +498,20 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 
 
+NeoBundle 'MrJJJ/tslime.vim.git' 
 
-"NeoBundle 'MrJJJ/tslime.vim.git' 
-NeoBundle 'jgdavey/tslime.vim.git' 
-vmap <C-c><C-c> <Plug>SendSelectionToTmux
-nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-nmap <C-c>r <Plug>SetTmuxVars
+"NeoBundle 'benmills/vimux.git'
+"function! VimuxSlime()
+  "call VimuxSendText(@v)
+  "call VimuxSendKeys("Enter")
+"endfunction
+
+ " If text is selected, save it in the v buffer and send that buffer it to tmux
+ vmap <leader>t "vy :call VimuxSlime()<CR>
+
+ " Select current paragraph and send it to tmux
+ nmap <leader>tt vip<LocalLeader>vs<CR>
+
 "Not fully supported by vundle
 "cd ~/.vim/plugin && ln -s ~/.vim/bundle/tslime.vim/tslime.vim
 "NeoBundle 'MrJJJ/csv.vim.git'
@@ -527,7 +545,10 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips","snippets"]
 
 NeoBundle 'MrJJJ/snippets.git'
 
+"NeoBundle 'vim-scripts/buftabs.git'
+
 NeoBundle 'vim-scripts/Vim-R-plugin.git'
+let vimrplugin_assign = 1
 let vimrplugin_screenplugin = 0
 "NeoBundle 'Valloric/YouCompleteMe.git'
 
