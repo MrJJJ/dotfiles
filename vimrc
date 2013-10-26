@@ -40,6 +40,7 @@ nnoremap <C-c> :nohl<CR><Esc>
 nnoremap i :nohl<CR>i
 nnoremap a :nohl<CR>a
 nnoremap c :nohl<CR>c
+nnoremap o :nohl<CR>c
 "autocmd cursormoved * set nohlsearch
 "noremap n :set hlsearch<cr>n
 "noremap N :set hlsearch<cr>N
@@ -342,7 +343,7 @@ vnoremap > >gv
 noremap ù m
 noremap m /
 noremap M :
-nmap <leader><leader> /
+nmap <leader><leader> :nohl<CR>
 nmap ! /
 "marques
 map è `
@@ -375,13 +376,12 @@ map gp :w !python3 %
 
 map gr :!R -e "library(knitr);spin('%')" && xdotool key alt+Tab && xdotool key ctrl+r && xdotool key alt+Tab
 
-map g# ^ijkki################################################################################jkyyjpki###   jk$a   ###jkkld$jjld$
 
 " fill rest of line with characters
 function! FillLine( str )
     " set tw to the desired total length
     let tw = &textwidth
-    if tw==0 | let tw = 65 | endif
+    if tw==0 | let tw = 70 | endif
     " strip trailing spaces first
     .s/[[:space:]]*$//
     " calculate total number of 'str's to insert
@@ -393,7 +393,12 @@ function! FillLine( str )
     endif
 endfunction
 
-map g- ^i#------ jk:call FillLine('-')<CR>
+"-----  decoration code  ------------------------------------------------------
+map g# ^ijkki################################################################################jkyyjpki##   jk$a   ###jkkld$jjld$kkVjjgh$j
+map g& ^ijkki################################################################################jkyyjpki##   jk$a   ###jkkld$jjld$kkVjjgh$j
+map g- ^i------  jk:call FillLine('-')<CR>gh
+map gé ^i------  <ESC>:call FillLine('-')<CR>gh$F i <ESC>$
+map g" ^i--------- jkgh$ 
 
 "map & 1
 "map é 2
@@ -470,9 +475,10 @@ NeoBundle 'Shougo/unite.vim'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
-map <C-b> :Unite -no-split -start-insert file_mru<CR>
+map <C-l> :Unite -no-split -start-insert buffer<CR>
+map <leader>u :Unite -no-split -start-insert file_mru<CR>
 "map <C-l> :b <C-l><C-l>
-noremap <C-l> :bn<CR>
+"noremap <C-l> :bn<CR>
 "nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
 nmap <Leader><TAB> :ls<cr>:b 
 nmap <C-h> :silent w<CR>:b#<CR>
