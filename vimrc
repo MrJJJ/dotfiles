@@ -397,7 +397,7 @@ endfunction
 map g# ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
 map g& ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
 map g- ^i----- jk:call FillLine('-')<CR>gh
-map gé ^i----- <ESC>:call FillLine('-')<CR>gh$F i <ESC>$
+map gé ^i----- <ESC>:call FillLine('-')<CR>gh$
 map g" ^i--------- jkgh$ 
 
 
