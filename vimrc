@@ -40,7 +40,7 @@ nnoremap <C-c> :nohl<CR><Esc>
 nnoremap i :nohl<CR>i
 nnoremap a :nohl<CR>a
 nnoremap c :nohl<CR>c
-nnoremap o :nohl<CR>c
+nnoremap o :nohl<CR>o
 "autocmd cursormoved * set nohlsearch
 "noremap n :set hlsearch<cr>n
 "noremap N :set hlsearch<cr>N
