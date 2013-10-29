@@ -378,9 +378,10 @@ map gr :!R -e "library(knitr);spin('%')" && xdotool key alt+Tab && xdotool key c
 
 
 " fill rest of line with characters
-function! FillLine( str )
+function! FillLine( str, width )
     " set tw to the desired total length
     let tw = &textwidth
+    let tw = a:width
     if tw==0 | let tw = 70 | endif
     " strip trailing spaces first
     .s/[[:space:]]*$//
@@ -396,9 +397,9 @@ endfunction
 "-----  decoration code  ------------------------------------------------------
 map g# ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
 map g& ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
-map g- ^i----- <ESC>:call FillLine('-')<CR>gh$
-map gé ^i----- <ESC>:call FillLine('-')<CR>gh$
-map g" ^i----- jkgh^i   jk$a ------jk$
+map g- ^i----- <ESC>:call FillLine('-',70)<CR>gh$
+map gé ^i----- <ESC>:call FillLine('-',70)<CR>gh$
+map g" ^i   ----- <ESC>:call FillLine('-',50)<CR>gh$
 
 "map & 1
 "map é 2
