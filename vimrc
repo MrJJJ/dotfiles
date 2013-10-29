@@ -12,7 +12,6 @@ set autochdir
 set autoread
 
 "Copy Paste in the xclipboard
-
 if has("unnamedplus") && has("xterm_clipboard") && hostname() == 'ultra'
 set clipboard=unnamedplus
 endif
@@ -399,7 +398,7 @@ map g# ^ijkki##################################################################
 map g& ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
 map g- ^i----- <ESC>:call FillLine('-',70)<CR>gh$
 map gé ^i----- <ESC>:call FillLine('-',70)<CR>gh$
-map g" ^i   ----- <ESC>:call FillLine('-',50)<CR>gh$
+map g" ^i----- jkgh^i   jk$a ------jk$
 
 "map & 1
 "map é 2
