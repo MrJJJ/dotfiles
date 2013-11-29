@@ -353,9 +353,10 @@ map è `
 
 "Envoyer à bash + log in .%_log
 map gb :.w !bash
+vmap gb :w !bash
 if filereadable("/bin/zsh")
 	map gb :.w !zsh
-	vmap gb :.w !zsh
+	vmap gb :w !zsh
 endif
 "map gb yy:!echo "\# `date +\%A\ \%d\ \%B\ \%Y\ --\>\ \%kh\ \%Mm\ \%Ss`\n\# >>> <C-R>"<C-H>" >> .%_log<CR>:.w !bash\|tee -a .%_log
 "vmap gb y:!echo "\# `date +\%A\ \%d\ \%B\ \%Y\ --\>\ \%kh\ \%Mm\ \%Ss`\n\# >>> <C-R>"<C-H><C-F>:.s/<C-V><C-M>/\\n\\# >>> /g<CR>A" >> .%_log<CR>:w !bash\|tee -a .%_log
