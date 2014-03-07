@@ -319,7 +319,8 @@ noremap YY "+yy
 noremap P "+p
 
 "mapleader sur espace
-let mapleader = "\<space>"
+"let mapleader = "\<space>"
+map <space> <leader>
 
 "titre de la fenêtre hérite du titre du doc
 set title
@@ -480,7 +481,10 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
 map <C-l> :Unite -no-split -start-insert buffer<CR>
-map <leader>u :Unite -no-split -start-insert file_mru<CR>
+let g:unite_source_file_mru_long_limit = 5000
+let g:unite_source_directory_mru_long_limit = 5000
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+map <leader>u :<C-u>Unite -no-split -start-insert file_mru<CR>
 "map <C-l> :b <C-l><C-l>
 "noremap <C-l> :bn<CR>
 "nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
