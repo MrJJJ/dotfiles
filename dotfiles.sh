@@ -16,5 +16,8 @@ done
 #Install NeoBundle
 if [ ! -d ~/.vim/bundle/neobundle.vim ] ; then
 	mkdir -p ~/.vim/bundle
-	git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+	git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
 fi
+
+#Install zsh
+git clone git://github.com/tarruda/zsh-autosuggestion ~/.zsh-autosuggestion
