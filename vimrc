@@ -319,8 +319,7 @@ noremap YY "+yy
 noremap P "+p
 
 "mapleader sur espace
-"let mapleader = "\<space>"
-map <space> <leader>
+let mapleader = "\<space>"
 
 "titre de la fenêtre hérite du titre du doc
 set title
@@ -476,6 +475,7 @@ map gh <leader>c<leader>
 	"\ }
 "let g:ctrlp_match_window_reversed = 1 "CtrlP on top of screen
 
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
@@ -549,13 +549,13 @@ NeoBundle 'tpope/vim-fugitive'
 map <leader>gg :!git add %<CR> :Gcommit<CR>i
 map <leader>gp :Git push<CR>
 
-NeoBundle 'SirVer/ultisnips.git'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="g<tab>"
-let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
-"stuff to define my own snippets
-set runtimepath+=~/.vim/bundle
-let g:UltiSnipsSnippetDirectories=["UltiSnips","snippets"]
+"NeoBundle 'SirVer/ultisnips.git'
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="g<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
+""stuff to define my own snippets
+"set runtimepath+=~/.vim/bundle
+"let g:UltiSnipsSnippetDirectories=["UltiSnips","snippets"]
 
 NeoBundle 'MrJJJ/snippets.git'
 
