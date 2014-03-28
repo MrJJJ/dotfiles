@@ -20,4 +20,4 @@ if [ ! -d ~/.vim/bundle/neobundle.vim ] ; then
 fi
 
 #Install zsh
-git clone git://github.com/tarruda/zsh-autosuggestion ~/.zsh-autosuggestion
+#git clone git://github.com/tarruda/zsh-autosuggestion ~/.zsh-autosuggestion
