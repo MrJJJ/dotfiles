@@ -22,14 +22,15 @@ bindkey '^[[7~' beginning-of-line #touche home
 bindkey '^[[8~' end-of-line #touche Fin
 bindkey '^D'    delete-char             # Del
 bindkey "^[[3~" delete-char # la touche suppr
-bindkey '5~' history-search-backward #PgUp
-bindkey '6~' history-search-forward #PgDn
+autoload zsh-history-substring-search
+zle -N zsh-history-substring-search
+bindkey "^T" zsh-history-substring-search #PgUp
 
 ####################
 ###   #HISTORY   ###
 ####################
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=100000000
+SAVEHIST=100000000
 HISTFILE=~/.zsh_history
 #Partager historique ?
 setopt histignorealldups sharehistory
@@ -229,8 +230,10 @@ if [ -z $XCAPE ] ; then
 fi
 
 source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source ~/dotfiles/zsh-history-substring-search.zsh
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bold,underline"
 
 #source ~/.zsh-autosuggestions/autosuggestions.zsh
 ## Enable autosuggestions automatically
