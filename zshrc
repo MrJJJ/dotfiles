@@ -222,11 +222,13 @@ ls -I$pattern
 #git clone https://github.com/alols/xcape.git .
 #make
 #cp xcape ~/bin
+if hash xcape 2>/dev/null; then
 if [ -z $XCAPE ] ; then
 	export XCAPE=1
 	killall xcape
 	xcape -e 'Caps_Lock=Escape'
 	#xcape -e 'Caps_Lock=Escape;ISO_Group_Shift=space'
+fi
 fi
 
 #plugin from https://github.com/zsh-users/zsh-history-substring-search
