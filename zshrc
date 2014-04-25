@@ -93,8 +93,8 @@ setopt extendedglob
 ####################
 ###   #ALIASES   ###
 ####################
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+#if [ -x /usr/bin/dircolors ]; then
+    #test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias ll='ls -lh --color=auto'
     alias dir='dir --color=auto'
@@ -115,7 +115,7 @@ if [ -x /usr/bin/dircolors ]; then
 
 	alias c='clear'
 	alias s='cd ..'
-fi
+#fi
 
 #Open all filenames in vim
 function lv() {ls "$@" | vim - -c ":w! .lv" ;} #ouvrir un ls dans vim
@@ -229,6 +229,7 @@ if [ -z $XCAPE ] ; then
 	#xcape -e 'Caps_Lock=Escape;ISO_Group_Shift=space'
 fi
 
+#plugin from https://github.com/zsh-users/zsh-history-substring-search
 source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/zsh-history-substring-search.zsh
 bindkey -M vicmd 'k' history-substring-search-up
