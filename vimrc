@@ -185,11 +185,6 @@ nnoremap && :%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>
 "Permettre d'ouvrir plus d'onglets qu'autorisé
 set tabpagemax=50
 
-
-"AUTOCOMPLETION avec tab
-let g:SuperTabDefaultCompletionType = "context"
-
-
 "CSV
 
 function! CSVH(colnr)
@@ -452,6 +447,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'ervandew/supertab'       
+let g:SuperTabDefaultCompletionType = "context"
+
 NeoBundle 'scrooloose/nerdtree'    
 map gn :silent NERDTreeToggle <CR>
 NeoBundle 'scrooloose/nerdcommenter'
@@ -461,6 +458,7 @@ map ; f
 
 map gh <leader>c<leader>
 
+NeoBundle 'jszakmeister/vim-togglecursor.git'
 
 "NeoBundle 'kien/ctrlp.vim'         
 ""map <C-b> :ls<CR>:b 
@@ -585,6 +583,9 @@ NeoBundleCheck
 "set nocp
 "filetype plugin on
 
+"For Konsole
+"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 "xterm
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -595,6 +596,7 @@ NeoBundleCheck
 	"au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile1/cursor_shape block"
     "au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile1/cursor_shape block"
     "endif
+	"
 "
 ""Pour urxvt
 "silent !echo -ne "\033]12;white\007"    " Initialize the cursor to white at startup
