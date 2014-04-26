@@ -54,7 +54,7 @@ set wmnu "affiche le menu
 "set wildmode=list:longest,list:full "affiche toutes les possibilités
 set wildmode=longest:full,full "affiche toutes les possibilités
 set wcm=<C-l>
-cmap <C-h> <C-p>
+"cmap <C-h> <C-p>
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz "ignorer certains types de fichiers pour la complétion des includes
 "imap <Tab> <C-X><C-F>
 
@@ -212,6 +212,7 @@ set autoindent
 
 syntax enable "enable my syntax
 colorscheme default
+set background=light
 set t_Co=256
 
 
@@ -349,6 +350,11 @@ map è `
 "Envoyer à bash + log in .%_log
 map gb :.w !bash
 vmap gb :w !bash
+
+map gbv :s/\#/\\#/g<C-M>yy:s/\\#/\#/g<C-M>:!vital '<C-R>"<C-H>'
+vmap gbv :s/\#/\\#/g<C-M>gvygv:s/\\#/\#/g<C-M>:!vital '<C-R>"<C-H>'
+"map gbv yy:!vital '<C-R>"<C-H>'
+
 if filereadable("/bin/zsh")
 	map gb :.w !zsh
 	vmap gb :w !zsh
