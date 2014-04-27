@@ -351,8 +351,8 @@ map è `
 map gb :.w !bash
 vmap gb :w !bash
 
-map gbv :s/\#/\\#/g<C-M>yy:s/\\#/\#/g<C-M>:!vital '<C-R>"<C-H>'<Home><S-right>
-vmap gbv :s/\#/\\#/g<C-M>gvygv:s/\\#/\#/g<C-M>:!vital '<C-R>"<C-H>'
+map gbv :s/\#/\\#/ge<C-M>yy:s/\\#/\#/ge<C-M>:!vital '<C-R>"<C-H>'<Home><S-right>
+vmap gbv :s/\#/\\#/ge<C-M>gvygv:s/\\#/\#/ge<C-M>:!vital '<C-R>"<C-H>'
 "map gbv yy:!vital '<C-R>"<C-H>'
 
 if filereadable("/bin/zsh")
