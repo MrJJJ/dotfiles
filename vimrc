@@ -295,8 +295,9 @@ hi Visual cterm=reverse ctermbg=black
 
 "### windows split ###
 hi VertSplit ctermbg=none ctermfg=black
-hi StatusLine ctermbg=white ctermfg=black
+hi StatusLine ctermbg=green ctermfg=black
 "hi StatusLineNC ctermfg=14 ctermbg=0
+hi StatusLineNC ctermbg=grey ctermfg=black
 
 "### search ###
 "hi search cterm=reverse ctermfg=black
