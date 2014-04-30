@@ -59,8 +59,8 @@ set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz "ignorer certains types de fichiers
 "imap <Tab> <C-X><C-F>
 
 "Folding
-set foldmethod=indent "va fold selon indentation
-"set foldmethod=syntax "va fold selon la syntaxe
+"set foldmethod=indent "va fold selon indentation
+"set kfoldmethod=syntax "va fold selon la syntaxe
 set foldlevel=99 "ouvre les folds jusqu'au niveau demandé (99=tous)
 function! MyFoldFunction()
 let line = getline(v:foldstart)
@@ -72,6 +72,30 @@ endfunction
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
 
+set foldmethod=expr
+set foldexpr=FoldTree(v:lnum)
+function! FoldTree(lnum)
+	let numlines = lines('$')
+	let previousLine = a:lnum - 1
+	if getline(a:lnum) =~ '\v^###*'
+		return '0'
+	elseif getline(a:lnum) =~ '\v^#-*'
+		return '1'
+	elseif getline(a:lnum) =~ '\v^ #-*'
+		return '2'
+	elseif getline(a:lnum) =~ '\v^#@<!'
+		while previousLine > 0
+			if getline(previousLine) =~ '\v^###*'
+				return '3'
+			elseif getline(previousLine) =~ '\v^#-*'
+				return '3'
+			elseif getline(previousLine) =~ '\v^ #-*'
+				return '3'
+			endif
+			let previousLine -= 1
+		endwhile
+	endif
+endfunction
 
 "Relative number only in normal mode
 "set rnu
@@ -247,44 +271,80 @@ hi SpellBad ctermbg=none ctermfg=red
 "### fold ###
 hi Folded ctermfg=cyan ctermbg=none
 "hi Folded ctermfg=cyan ctermbg=236
-function! MyFoldText() " {{{2
-    let suba = getline(v:foldstart)
-    let suba = substitute(suba, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-    let suba = substitute(suba, '\s*$', '', '')
-    let subb = getline(v:foldend)
-    "let subb = substitute(subb, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-    "let subb = substitute(subb, '^\s*', '', '')
-    "let subb = substitute(subb, '\s*$', '', '')
-    let lines = v:foldend - v:foldstart + 1
-    let text = suba
-    "if lines > 1 && strlen(subb) > 0
-    "let text .= ' ... '.subb
+"function! MyFoldText() " {{{2
+    "let suba = getline(v:foldstart)
+    "let suba = substitute(suba, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    "let suba = substitute(suba, '\s*$', '', '')
+    "let subb = getline(v:foldend)
+    ""let subb = substitute(subb, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    ""let subb = substitute(subb, '^\s*', '', '')
+    ""let subb = substitute(subb, '\s*$', '', '')
+    "let lines = v:foldend - v:foldstart + 1
+    "let text = suba
+    ""if lines > 1 && strlen(subb) > 0
+    ""let text .= ' ... '.subb
+    ""endif
+    "let fillchar = matchstr(&fillchars, 'fold:.')
+    "if strlen(fillchar) > 0
+      "let fillchar = fillchar[-1:]
+    "else
+      "let fillchar = '-'
     "endif
-    let fillchar = matchstr(&fillchars, 'fold:.')
-    if strlen(fillchar) > 0
-      let fillchar = fillchar[-1:]
-    else
-      let fillchar = '-'
-    endif
-    let lines = repeat(fillchar, 4).' ' . lines . ' lines '.repeat(fillchar, 3)
-    if has('float')
-      let nuw = max([float2nr(log10(line('$')))+3, &numberwidth])
-    else
-      let nuw = &numberwidth
-    endif
-    let n = winwidth(winnr()) - &foldcolumn - nuw - strlen(lines)
-    let text = text[:min([strlen(text), n])]
-    if text[-1:] != ' '
-      if strlen(text) < n
-        let text .= ' '
-      else
-        let text = substitute(text, '\s*.$', '', '')
-      endif
-    endif
-    let text .= repeat('-', n - strlen(text))
-    let text .= lines
-    return text
-  endfunction
+    "let lines = repeat(fillchar, 4).' ' . lines . ' lines '.repeat(fillchar, 3)
+    "if has('float')
+      "let nuw = max([float2nr(log10(line('$')))+3, &numberwidth])
+    "else
+      "let nuw = &numberwidth
+    "endif
+    "let n = winwidth(winnr()) - &foldcolumn - nuw - strlen(lines)
+    "let text = text[:min([strlen(text), n])]
+    "if text[-1:] != ' '
+      "if strlen(text) < n
+        "let text .= ' '
+      "else
+        "let text = substitute(text, '\s*.$', '', '')
+      "endif
+    "endif
+    "let text .= repeat('-', n - strlen(text))
+    "let text .= lines
+    "return text
+  "endfunction
+  
+  function! MyFoldText() " {{{2
+	  "get first non-blank line
+	  let fs = v:foldstart
+	  while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+	  endwhile
+	  if fs > v:foldend
+		  let line = getline(v:foldstart)
+	  else
+		  let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+	  endif
+	  let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+	  let foldSize = 1 + v:foldend - v:foldstart
+	  let foldSizeStr = " " . foldSize . " lines "
+	  let foldLevelStr = repeat(" ", v:foldlevel/4)
+	  let lineCount = line("$")
+	  let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+	  let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+	  let indent = 1
+	  let previousLine = a:lnum - 1
+	  while previousLine > 0
+		  if getline(previousLine) =~ '\v^###*'
+			  let indent = 0
+			  break
+		  elseif getline(previousLine) =~ '\v^#-*'
+			  let indent = 0
+			  break
+		  elseif getline(previousLine) =~ '\v^ #-*'
+			  let indent = 1
+			  break
+		  endif
+		  let previousLine -= 1
+	  endwhile
+	  let indentStr = repeat(" ", indent)
+	  return indentStr . '#     ' . foldSizeStr . foldPercentage . '                                                                                                                                                                                                                                                                                                         '
+  endf
 set foldtext=MyFoldText()
 
 "### parenthesis match ###
@@ -402,9 +462,11 @@ endfunction
 "-----  decoration code  ------------------------------------------------------
 map g# ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
 map g& ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
-map g- ^i----- <ESC>:call FillLine('-',70)<CR>gh$
-map gé ^i----- <ESC>:call FillLine('-',70)<CR>gh$
-map g" ^i------- jkgh^i   jk$
+"map g- ^i----- <ESC>:call FillLine('-',70)<CR>gh$
+"map gé ^i----- <ESC>:call FillLine('-',70)<CR>gh$
+"map g" ^i------- jkgh^i   jk$
+map gé ^i----- <ESC>gh$
+map g" ^i----- <ESC>gh^i <ESC>$
 
 "map & 1
 "map é 2
@@ -633,6 +695,7 @@ nmap <leader>sz :set lazyredrawn!<CR>
 nmap <leader>sw :set wrap!<CR>
 nmap <leader>sp :set paste!<CR>
 nmap <leader>si :set ic!<CR>
+nmap <leader>swp :!rm ~/.vim/bck/*%*.swp
 
 
 "###################
