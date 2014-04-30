@@ -60,7 +60,7 @@ set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz "ignorer certains types de fichiers
 
 "Folding
 "set foldmethod=indent "va fold selon indentation
-"set kfoldmethod=syntax "va fold selon la syntaxe
+"set foldmethod=syntax "va fold selon la syntaxe
 set foldlevel=99 "ouvre les folds jusqu'au niveau demandé (99=tous)
 function! MyFoldFunction()
 let line = getline(v:foldstart)
@@ -84,16 +84,7 @@ function! FoldTree(lnum)
 	elseif getline(a:lnum) =~ '\v^ #-*'
 		return '2'
 	elseif getline(a:lnum) =~ '\v^#@<!'
-		while previousLine > 0
-			if getline(previousLine) =~ '\v^###*'
-				return '3'
-			elseif getline(previousLine) =~ '\v^#-*'
-				return '3'
-			elseif getline(previousLine) =~ '\v^ #-*'
-				return '3'
-			endif
-			let previousLine -= 1
-		endwhile
+		return '3'
 	endif
 endfunction
 
