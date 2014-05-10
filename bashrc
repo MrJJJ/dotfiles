@@ -132,5 +132,4 @@ alias tmux='TERM=screen-256color tmux'
 #vim mode
 set -o vi
 bind -m vi-insert '"jk":vi-movement-mode'
-
-exec zsh
+if type zsh > /dev/null; then exec zsh ; fi
