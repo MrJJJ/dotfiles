@@ -4,7 +4,7 @@
 #git remote add origin git@github.com:tejr/dotfiles.git
 #git push -u origin master
 
-files="bashrc tmux.conf vimrc zshrc"
+files="tmux.conf vimrc zshrc"
 
 mkdir -p ~/.dotfiles
 for f in $files; do
