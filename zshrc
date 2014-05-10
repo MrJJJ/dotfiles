@@ -149,7 +149,7 @@ export PATH=$PATH:$HOME/bin/
 ###   #TMUX STUFF   ###
 #######################
 alias tmux='TERM=xterm-256color tmux'
-[[ $TERM != "screen-256color" ]] && tmux #&& exit
+[[ $TERM != "screen-256color" ]] # && tmux #&& exit
 
 alias ,='tmux rename-window ${PWD##*/}'
 
