@@ -5,7 +5,7 @@
 #git push -u origin master
 
 
-files="tmux.conf vimrc zshrc"
+files="bashrc tmux.conf vimrc zshrc"
 
 mkdir -p ~/.dotfiles
 for f in $files; do
