@@ -1,0 +1,27 @@
+umask 022 
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/syno/sbin:/usr/syno/bin:/usr/local/sbin:/usr/local/bin
+PATH=/opt/bin:/opt/sbin:$PATH # Add the personal bin of ipkg , from https://github.com/trepmag/ds213j-optware-bootstrap
+export PATH
+
+mount -o bind /volume1/@optware /opt # from https://github.com/trepmag/ds213j-optware-bootstrap
+
+#This fixes the backspace when telnetting in.
+#if [ "$TERM" != "linux" ]; then
+#        stty erase
+#fi
+
+HOME=/root
+export HOME
+
+TERM=${TERM:-cons25}
+export TERM
+
+PAGER=more
+export PAGER
+
+PS1="`hostname`> "
+
+alias dir="ls -al"
+alias ll="ls -la"
+
