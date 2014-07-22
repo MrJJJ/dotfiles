@@ -224,7 +224,7 @@ if [ -z $XCAPE ] ; then
 	export XCAPE=1
 	killall xcape
 	xcape -e 'Caps_Lock=Escape'
-	#xcape -e 'Caps_Lock=Escape;ISO_Group_Shift=space'
+	#xcape -e 'Caps_Lock=Escape;space=ISO_Group_Shift'
 fi
 fi
 
@@ -246,3 +246,9 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bold,underline"
 #bindkey '^T' autosuggest-toggle
 #bindkey '^f' vi-forward-word
 #```
+#
+
+#########################################
+###   Very specific stuff for ultra   ###
+#########################################
+~/bin/retmuxJJJ && clear
