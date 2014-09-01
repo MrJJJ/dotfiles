@@ -32,6 +32,9 @@ set shiftwidth=4
 set softtabstop=4
 "set expandtab "supprime les tabulations et met des espaces
 
+"automatically save any changes made to the buffer before it is hidden.
+set autowrite
+
 "Recherche
 set incsearch
 set hlsearch
@@ -59,8 +62,8 @@ set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz "ignorer certains types de fichiers
 "imap <Tab> <C-X><C-F>
 
 "Folding
-"set foldmethod=indent "va fold selon indentation
-"set foldmethod=syntax "va fold selon la syntaxe
+set foldmethod=indent "va fold selon indentation
+set foldmethod=syntax "va fold selon la syntaxe
 set foldlevel=99 "ouvre les folds jusqu'au niveau demandé (99=tous)
 function! MyFoldFunction()
 let line = getline(v:foldstart)
@@ -68,10 +71,10 @@ let sub = substitute(line,'/\*\|\*/\|^\s+', '', 'g')
 let lines = v:foldend - v:foldstart + 1
 return v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
 endfunction
+
 "save folding
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
-
 set foldmethod=expr
 set foldexpr=FoldTree(v:lnum)
 function! FoldTree(lnum)
@@ -301,7 +304,7 @@ hi Folded ctermfg=cyan ctermbg=none
     "return text
   "endfunction
   
-  function! MyFoldText() " {{{2
+  function! FoldTreeLook() " {{{2
 	  "get first non-blank line
 	  let fs = v:foldstart
 	  while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
@@ -336,7 +339,7 @@ hi Folded ctermfg=cyan ctermbg=none
 	  let indentStr = repeat(" ", indent)
 	  return indentStr . '#     ' . foldSizeStr . foldPercentage . '                                                                                                                                                                                                                                                                                                         '
   endf
-set foldtext=MyFoldText()
+set foldtext=FoldTreeLook()
 
 "### parenthesis match ###
 hi MatchParen cterm=bold ctermfg=yellow ctermbg=black
@@ -606,6 +609,8 @@ NeoBundle 'davidhalter/jedi.git'
 NeoBundle 'tpope/vim-fugitive'
 map <leader>gg :!git add %<CR> :Gcommit<CR>i
 map <leader>gp :Git push<CR>
+
+NeoBundle 'tpope/vim-obsession.git'
 
 "NeoBundle 'SirVer/ultisnips.git'
 "let g:UltiSnipsExpandTrigger="<tab>"
