@@ -514,14 +514,19 @@ let g:SuperTabDefaultCompletionType = "context"
 
 NeoBundle 'scrooloose/nerdtree'    
 map gn :silent NERDTreeToggle <CR>
+
 NeoBundle 'scrooloose/nerdcommenter'
+map gh <leader>c<leader>
 
 NeoBundle 'rhysd/clever-f.vim'
 map ; f
 
-map gh <leader>c<leader>
-
 NeoBundle 'jszakmeister/vim-togglecursor.git'
+
+NeoBundle 'vim-scripts/buftabs.git'
+ let g:buftabs_only_basename=1
+noremap <C-l> :bnext<CR> 
+noremap <C-h> :bprev<CR>
 
 "NeoBundle 'kien/ctrlp.vim'         
 ""map <C-b> :ls<CR>:b 
@@ -541,7 +546,7 @@ NeoBundle 'Shougo/unite.vim'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
-map <C-l> :Unite -no-split -start-insert buffer<CR>
+"map <C-l> :Unite -no-split -start-insert buffer<CR>
 let g:unite_source_file_mru_long_limit = 5000
 let g:unite_source_directory_mru_long_limit = 5000
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -550,7 +555,7 @@ map <leader>u :<C-u>Unite -no-split -start-insert file_mru<CR>
 "noremap <C-l> :bn<CR>
 "nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
 nmap <Leader><TAB> :ls<cr>:b 
-nmap <C-h> :silent w<CR>:b#<CR>
+"nmap <C-h> :silent w<CR>:b#<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <Leader>p :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
 " Custom mappings for the unite buffer
@@ -622,14 +627,11 @@ NeoBundle 'tpope/vim-obsession.git'
 
 NeoBundle 'MrJJJ/snippets.git'
 
-"NeoBundle 'vim-scripts/buftabs.git'
-
 NeoBundle 'vim-scripts/Vim-R-plugin.git'
 let vimrplugin_assign = 1
 let vimrplugin_screenplugin = 0
 "NeoBundle 'Valloric/YouCompleteMe.git'
 
-"NeoBundle 'vim-scripts/buftabs'
 
 filetype plugin indent on     " Required!
  " Installation check.
