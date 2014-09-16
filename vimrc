@@ -433,6 +433,9 @@ let g:tex_fold_enabled=0
 "Envoyer à python
 map gp :w !python3 %
 
+"header
+au BufNewFile *.py 0r ~/dotfiles/header.py
+
 map gr :!R -e "library(knitr);spin('%')" && xdotool key alt+Tab && xdotool key ctrl+r && xdotool key alt+Tab
 
 
