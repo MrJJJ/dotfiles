@@ -27,9 +27,9 @@ set mouse=r
 set showmatch
 
 "Modifier la taille des tabulations
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=3
+set shiftwidth=3
+set softtabstop=3
 "set expandtab "supprime les tabulations et met des espaces
 
 "automatically save any changes made to the buffer before it is hidden.
@@ -139,6 +139,7 @@ if has('persistent_undo')
 	set undodir=~/.vim/bck// "save undofile in .vim/bck
 endif
 set directory=~/.vim/bck// "save swap files in .vim/bck
+set noswapfile
 
 
 "Turn of scrolling (fastier)
@@ -457,12 +458,12 @@ function! FillLine( str, width )
 endfunction
 
 "-----  decoration code  ------------------------------------------------------
-map g# ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
-map g& ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
+map g# ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/ge<CR>j$
+map g& :s/#---* //ge<CR>:s/---*$//ge<CR>^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
 "map g- ^i----- <ESC>:call FillLine('-',70)<CR>gh$
 "map gé ^i----- <ESC>:call FillLine('-',70)<CR>gh$
 "map g" ^i------- jkgh^i   jk$
-map gé ^i----- <ESC>gh$
+map gé k:s/####*//ge<CR>j:s/###   //ge<CR>:s/   ###//ge<CR>j:s/####*//ge<CR>k^i----- <ESC>:call FillLine('-',70)<CR>gh$
 map g" ^i----- <ESC>gh^i <ESC>$
 
 "map & 1
@@ -553,6 +554,7 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 let g:unite_source_file_mru_long_limit = 5000
 let g:unite_source_directory_mru_long_limit = 5000
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 map <leader>u :<C-u>Unite -no-split -start-insert file_mru<CR>
 "map <C-l> :b <C-l><C-l>
 "noremap <C-l> :bn<CR>
@@ -619,6 +621,10 @@ map <leader>gg :!git add %<CR> :Gcommit<CR>i
 map <leader>gp :Git push<CR>
 
 NeoBundle 'tpope/vim-obsession.git'
+fu! SaveSess()
+    execute 'Obsession'
+endfunction
+autocmd VimEnter * call SaveSess()
 
 "NeoBundle 'SirVer/ultisnips.git'
 "let g:UltiSnipsExpandTrigger="<tab>"
