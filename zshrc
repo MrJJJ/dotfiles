@@ -7,9 +7,9 @@ vital=vital-it
 host=$HOST
 if [ "${host/vital}" = "$host" ]
 then
-	export PS1="%{$fg[blue]%}[%n@%M:%~]$ %{$reset_color%}"
-else
 	export PS1="%{$fg[yellow]%}[%n@%M:%~]$ %{$reset_color%}"
+else
+	export PS1="%{$fg[blue]%}[%n@%M:%~]$ %{$reset_color%}"
 fi
 
 #################
