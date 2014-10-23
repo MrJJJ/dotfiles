@@ -3,6 +3,18 @@
 ###################
 autoload -U colors && colors
 export PS1="%{$fg[yellow]%}[%n@%M:%~]$ %{$reset_color%}"
+vital=vital-it
+host=$HOST
+if [ "${host/vital}" = "$host" ]
+then
+	export PS1="%{$fg[blue]%}[%n@%M:%~]$ %{$reset_color%}"
+else
+	export PS1="%{$fg[yellow]%}[%n@%M:%~]$ %{$reset_color%}"
+fi
+
+#################
+###   Pager   ###
+#################
 export PAGER=less
 
 ###################
@@ -188,7 +200,6 @@ f(){ if [ "$PWD" != "$LPWD" ];then LPWD="$PWD"; tmux rename-window ${PWD//*\//};
 #./install.sh [ --local ]
 [[ -f ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
-
 #Print 256 colors
 col256()
 {
@@ -251,4 +262,4 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bold,underline"
 #########################################
 ###   Very specific stuff for ultra   ###
 #########################################
-~/bin/retmuxJJJ && clear
+#~/bin/retmuxJJJ && clear
