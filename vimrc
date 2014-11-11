@@ -1,6 +1,7 @@
 "automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
 
+
 "Activation de la coloration et de l'intendation
 filetype plugin on
 set runtimepath+=/usr/share/vim/addons/
@@ -90,6 +91,7 @@ function! FoldTree(lnum)
 		return '3'
 	endif
 endfunction
+
 
 "Relative number only in normal mode
 "set rnu
@@ -708,3 +710,12 @@ nmap <leader>swp :!rm ~/.vim/bck/*%*.swp
 "###################
 "###   MAPPING   ###
 "###################
+
+"############################
+"###   LAST TO EXECUTE   ####
+"############################
+
+"Disctinction between folding title and normal comments
+au BufRead,BufNewFile * hi Comment ctermfg=cyan
+au BufRead,BufNewFile * hi title ctermfg=blue
+au BufRead,BufNewFile * syn match title /^\s*#.*$/
