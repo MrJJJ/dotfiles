@@ -242,13 +242,14 @@ hi Statement ctermfg=yellow
 
 "### tab ###
 hi TabLineFill cterm=none
-hi TabLineFill ctermbg=14
+hi TabLineFill ctermbg=black
 hi TabLine ctermfg=14
-hi TabLine ctermbg=white
+hi TabLine ctermbg=black
 hi TabLine cterm=none
-hi TabLine cterm=reverse
-hi TabLineSel ctermbg=none
-hi TabLineSel ctermfg=white
+hi TabLine cterm=none
+hi TabLineSel ctermbg=black
+hi TabLineSel ctermfg=green
+hi TabLineSel cterm=bold
 
 
 "### popup completion ###
@@ -529,8 +530,10 @@ map ; f
 
 NeoBundle 'jszakmeister/vim-togglecursor.git'
 
-NeoBundle 'vim-scripts/buftabs.git'
- let g:buftabs_only_basename=1
+"NeoBundle 'vim-scripts/buftabs.git'
+"let g:buftabs_only_basename=1
+NeoBundle 'ap/vim-buftabline.git'
+let g:buftabline_show=1
 noremap <C-l> :bnext<CR> 
 noremap <C-h> :bprev<CR>
 
@@ -553,11 +556,12 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
 "map <C-l> :Unite -no-split -start-insert buffer<CR>
-let g:unite_source_file_mru_long_limit = 5000
+let g:unite_source_file_mru_long_limit = 5000000
 let g:unite_source_directory_mru_long_limit = 5000
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 map <leader>u :<C-u>Unite -no-split -start-insert file_mru<CR>
+map <C-b> :Unite -no-split -start-insert buffer<CR>
 "map <C-l> :b <C-l><C-l>
 "noremap <C-l> :bn<CR>
 "nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
