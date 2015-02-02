@@ -4,7 +4,7 @@ au BufWritePost .vimrc so ~/.vimrc
 
 "Activation de la coloration et de l'intendation
 filetype plugin on
-set runtimepath+=/usr/share/vim/addons/
+"set runtimepath+=/usr/share/vim/addons/
 
 "working directory same as file you are editing
 set autochdir
@@ -461,8 +461,8 @@ function! FillLine( str, width )
 endfunction
 
 "-----  decoration code  ------------------------------------------------------
-map g# ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/ge<CR>j$
-map g& :s/#---* //ge<CR>:s/---*$//ge<CR>^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
+map g# ^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/ge<CR>j$
+map g& :s/#---* //ge<CR>:s/---*$//ge<CR>^ijkki################################################################################jkyyjpki@@@   jk$a   ####jkkld$jjld$kkVjjgh$j:.s/@/#/g<CR>j$
 "map g- ^i----- <ESC>:call FillLine('-',70)<CR>gh$
 "map gé ^i----- <ESC>:call FillLine('-',70)<CR>gh$
 "map g" ^i------- jkgh^i   jk$
@@ -527,6 +527,7 @@ map gh <leader>c<leader>
 
 NeoBundle 'rhysd/clever-f.vim'
 map ; f
+map , F
 
 NeoBundle 'jszakmeister/vim-togglecursor.git'
 
