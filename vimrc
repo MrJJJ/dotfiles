@@ -633,6 +633,8 @@ fu! SaveSess()
 endfunction
 autocmd VimEnter * call SaveSess()
 
+NeoBundle 'tpope/vim-surround.git'
+
 "NeoBundle 'SirVer/ultisnips.git'
 "let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsJumpForwardTrigger="g<tab>"
@@ -648,10 +650,22 @@ let vimrplugin_assign = 1
 let vimrplugin_screenplugin = 0
 "NeoBundle 'Valloric/YouCompleteMe.git'
 
+NeoBundle "godlygeek/tabular.git"
+NeoBundle "majutsushi/tagbar"
+let g:tagbar_type_r = {
+    \ 'ctagstype' : 'r',
+    \ 'kinds'     : [
+        \ 'f:Functions',
+        \ 'g:GlobalVariables',
+        \ 'v:FunctionVariables',
+    \ ]
+\ }
 
 filetype plugin indent on     " Required!
+
  " Installation check.
 NeoBundleCheck
+
 
 "Ctag et taglist
 "let Tlist_Ctags_Cmd = '/usr/bin/ctags'
