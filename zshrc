@@ -194,7 +194,7 @@ f(){ if [ "$PWD" != "$LPWD" ];then LPWD="$PWD"; tmux rename-window ${PWD//*\//};
 ###   	#HANDY TOOLS   ###
 ##########################
 #autojump
-#git clone git://github.com/joelthelion/autojump.git
+#git clone https://github.com/joelthelion/autojump.git
 #Run the installation script:
 #cd autojump
 #./install.sh [ --local ]
