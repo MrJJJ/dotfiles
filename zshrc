@@ -124,10 +124,14 @@ setopt extendedglob
 
 	alias c='clear'
 	alias s='cd ..'
+
 #fi
 
 #Open all filenames in vim
 function lv() {ls "$@" | vim - -c ":w! .lv" ;} #ouvrir un ls dans vim
+
+#Edit bin files
+function vb() {vim ~/bin/$1}
 
 #Archive
 extract () {
@@ -196,9 +200,9 @@ f(){ if [ "$PWD" != "$LPWD" ];then LPWD="$PWD"; tmux rename-window ${PWD//*\//};
 #autojump
 #git clone https://github.com/joelthelion/autojump.git
 #Run the installation script:
-#cd autojump
+#cd ~/autojump
 #./install.py
-#[[ -f ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
+[[ -s /home/jooj/.autojump/etc/profile.d/autojump.sh ]] && source /home/jooj/.autojump/etc/profile.d/autojump.sh
 
 #Print 256 colors
 col256()
