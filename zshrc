@@ -9,7 +9,7 @@ if [ "${host/vital}" = "$host" ]
 then
 	export PS1="%{$fg[yellow]%}[%n@%M:%~]$ %{$reset_color%}"
 else
-	export PS1="%{$fg[yellow]%}[%n@%{$fg[red]%}%M%{$fg[yellow]%}:%~]$ %{$reset_color%}"
+	export PS1="%{$fg[yellow]%}[%n@%{$fg[purple]%}%M%{$fg[yellow]%}:%~]$ %{$reset_color%}"
 fi
 
 #################
