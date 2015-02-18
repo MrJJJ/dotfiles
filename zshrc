@@ -202,7 +202,7 @@ f(){ if [ "$PWD" != "$LPWD" ];then LPWD="$PWD"; tmux rename-window ${PWD//*\//};
 #Run the installation script:
 #cd ~/autojump
 #./install.py
-[[ -s /home/jooj/.autojump/etc/profile.d/autojump.sh ]] && source /home/jooj/.autojump/etc/profile.d/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
 #Print 256 colors
 col256()
