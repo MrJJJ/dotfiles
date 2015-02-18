@@ -627,11 +627,11 @@ NeoBundle 'tpope/vim-fugitive'
 map <leader>gg :!git add %<CR> :Gcommit<CR>i
 map <leader>gp :Git push<CR>
 
-NeoBundle 'tpope/vim-obsession.git'
-fu! SaveSess()
-    execute 'Obsession'
-endfunction
-autocmd VimEnter * call SaveSess()
+"NeoBundle 'tpope/vim-obsession.git'
+"fu! SaveSess()
+    "execute 'Obsession'
+"endfunction
+"autocmd VimEnter * call SaveSess()
 
 NeoBundle 'tpope/vim-surround.git'
 
