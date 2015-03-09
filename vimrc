@@ -200,8 +200,8 @@ inoremap <F12> <Esc>:!ctags -R --c++-kinds=+pv --fields=+iaS --extra=+q .<cr>
 noremap <S-W> <C-W>
 noremap <C-L> <C-W>
 
-nnoremap & :s/<c-r>=expand('<cword>')<cr>//g<left><left>
-nnoremap && :%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>
+nnoremap & :OverCommandLine<CR>s/<c-r><c-w>//g<left><left>
+nnoremap && :OverCommandLine<CR>%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>
 
 "Permettre d'ouvrir plus d'onglets qu'autorisé
 set tabpagemax=50
@@ -660,6 +660,11 @@ let g:tagbar_type_r = {
         \ 'v:FunctionVariables',
     \ ]
 \ }
+
+
+NeoBundle 'osyo-manga/vim-over'
+let g:over_enable_auto_nohlsearch = 1
+let g:over_enable_cmd_window = 1
 
 filetype plugin indent on     " Required!
 
