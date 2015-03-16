@@ -525,9 +525,9 @@ map gn :silent NERDTreeToggle <CR>
 NeoBundle 'scrooloose/nerdcommenter'
 map gh <leader>c<leader>
 
-"NeoBundle 'rhysd/clever-f.vim'
-"map ; f
-"map , F
+NeoBundle 'rhysd/clever-f.vim'
+map ; f
+map , F
 
 NeoBundle 'jszakmeister/vim-togglecursor.git'
 
