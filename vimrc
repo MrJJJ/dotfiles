@@ -200,8 +200,8 @@ inoremap <F12> <Esc>:!ctags -R --c++-kinds=+pv --fields=+iaS --extra=+q .<cr>
 noremap <S-W> <C-W>
 noremap <C-L> <C-W>
 
-nnoremap & :OverCommandLine<CR>s/<c-r><c-w>//g<left><left>
-nnoremap && :OverCommandLine<CR>%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>
+nnoremap & :s/<c-r><c-w>//g<left><left>
+nnoremap && :%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>
 
 "Permettre d'ouvrir plus d'onglets qu'autorisé
 set tabpagemax=50
@@ -525,9 +525,9 @@ map gn :silent NERDTreeToggle <CR>
 NeoBundle 'scrooloose/nerdcommenter'
 map gh <leader>c<leader>
 
-NeoBundle 'rhysd/clever-f.vim'
-map ; f
-map , F
+"NeoBundle 'rhysd/clever-f.vim'
+"map ; f
+"map , F
 
 NeoBundle 'jszakmeister/vim-togglecursor.git'
 
@@ -562,7 +562,7 @@ let g:unite_source_directory_mru_long_limit = 5000
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 map <leader>u :<C-u>Unite -no-split -start-insert file_mru<CR>
-map <C-b> :Unite -no-split -start-insert buffer<CR>
+map <leader>b :Unite -no-split -start-insert buffer<CR>
 "map <C-l> :b <C-l><C-l>
 "noremap <C-l> :bn<CR>
 "nmap <C-l> :silent w<cr>:Unite -start-insert -no-split buffer<CR>
@@ -665,6 +665,9 @@ let g:tagbar_type_r = {
 NeoBundle 'osyo-manga/vim-over'
 let g:over_enable_auto_nohlsearch = 1
 let g:over_enable_cmd_window = 1
+
+"NeoBundle 'justinmk/vim-sneak.git'
+"hi SneakPluginTarget guifg=black guibg=red ctermfg=black ctermbg=red
 
 filetype plugin indent on     " Required!
 
