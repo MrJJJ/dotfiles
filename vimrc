@@ -242,12 +242,12 @@ hi Statement ctermfg=yellow
 
 "### tab ###
 hi TabLineFill cterm=none
-hi TabLineFill ctermbg=black
+hi TabLineFill ctermbg=none
 hi TabLine ctermfg=14
-hi TabLine ctermbg=black
+hi TabLine ctermbg=none
 hi TabLine cterm=none
 hi TabLine cterm=none
-hi TabLineSel ctermbg=black
+hi TabLineSel ctermbg=none
 hi TabLineSel ctermfg=green
 hi TabLineSel cterm=bold
 
