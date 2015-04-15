@@ -1,5 +1,6 @@
 "automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
+map zv :so ~/.vimrc<CR>
 
 
 "Activation de la coloration et de l'intendation
@@ -627,11 +628,12 @@ NeoBundle 'tpope/vim-fugitive'
 map <leader>gg :!git add %<CR> :Gcommit<CR>i
 map <leader>gp :Git push<CR>
 
-"NeoBundle 'tpope/vim-obsession.git'
+NeoBundle 'tpope/vim-obsession.git'
 "fu! SaveSess()
-    "execute 'Obsession'
+	 "execute 'silent Obsession .'
 "endfunction
-"autocmd VimEnter * call SaveSess()
+"autocmd BufWritePost * call SaveSess()
+map <leader>o :Obsession<CR>
 
 NeoBundle 'tpope/vim-surround.git'
 
@@ -651,6 +653,8 @@ let vimrplugin_screenplugin = 0
 "NeoBundle 'Valloric/YouCompleteMe.git'
 
 NeoBundle "godlygeek/tabular.git"
+map <leader>t, :Tabularize /,<CR>
+
 NeoBundle "majutsushi/tagbar"
 let g:tagbar_type_r = {
     \ 'ctagstype' : 'r',
