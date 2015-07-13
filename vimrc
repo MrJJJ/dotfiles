@@ -165,6 +165,7 @@ au BufRead,BufNewfile *.fas set filetype=align
 au BufRead,BufNewfile *.fasta set filetype=align
 au BufRead,BufNewfile *.tex set filetype=tex
 au BufRead,BufNewfile *.md set filetype=markdown
+au BufRead,BufNewfile *.sh set filetype=zsh
 
 set dictionary+=/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/french
@@ -410,6 +411,7 @@ map è `
 "Envoyer à bash + log in .%_log
 map gb :.w !bash
 vmap gb :w !bash
+map gs :!./% 
 
 map gbv :s/\#/\\#/ge<C-M>yy:s/\\#/\#/ge<C-M>:!vital '<C-R>"<C-H>'<Home><S-right>
 vmap gbv :s/\#/\\#/ge<C-M>gvygv:s/\\#/\#/ge<C-M>:!vital '<C-R>"<C-H>'
@@ -665,6 +667,7 @@ let g:tagbar_type_r = {
     \ ]
 \ }
 
+NeoBundle 'vim-pandoc/vim-pandoc-syntax.git'
 
 NeoBundle 'osyo-manga/vim-over'
 let g:over_enable_auto_nohlsearch = 1
