@@ -116,7 +116,7 @@ setopt extendedglob
 	alias xclip='xclip -selection "clipboard"'
 	alias ld='ls --color=auto -d */'
 
-	alias t='task'
+	alias t='tudu'
 	alias tn='task note'
 
 	alias td='todo -Ac'
@@ -159,6 +159,8 @@ extract () {
 ###   # VARIABLE ENVIRONNEMENT   ###
 ####################################
 export PYTHONPATH=/home/$USER/jpy
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/bin/
 
 #######################
@@ -262,6 +264,18 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bold,underline"
 #bindkey '^f' vi-forward-word
 #```
 #
+
+#----- task warrior function ------------------------------------------
+#function t() {
+    #project=$(basename `pwd`);
+    #tp=( $(task _projects | grep $project) );
+ 
+    #if [[ -n $tp ]]; then
+        #task "$@" project:$project;
+    #else
+        #task "$@"
+    #fi
+#}
 
 #########################################
 ###   Very specific stuff for ultra   ###
