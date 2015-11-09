@@ -442,6 +442,7 @@ map gp :w !python3 %
 
 "header
 au BufNewFile *.py 0r ~/dotfiles/header.py
+au BufNewFile *.R 0r ~/dotfiles/header.R
 
 map gr :!R -e "library(knitr);spin('%')" && xdotool key alt+Tab && xdotool key ctrl+r && xdotool key alt+Tab
 
