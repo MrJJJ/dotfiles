@@ -442,7 +442,10 @@ map gp :w !python3 %
 
 "header
 au BufNewFile *.py 0r ~/dotfiles/header.py
+au BufNewFile *.py silent exec "!chmod 700 %"
 au BufNewFile *.R 0r ~/dotfiles/header.R
+au BufNewFile *.R silent exec "!chmod 700 %"
+au BufNewFile *.sh silent exec "!chmod 700 %"
 
 map gr :!R -e "library(knitr);spin('%')" && xdotool key alt+Tab && xdotool key ctrl+r && xdotool key alt+Tab
 
