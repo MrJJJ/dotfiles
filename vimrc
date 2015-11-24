@@ -514,15 +514,22 @@ map <leader>lv :!ls > .lv<CR> :e .lv<CR>
 
 "mkdir -p ~/.vim/bundle
 "git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-set nocompatible               " be iMproved
-filetype off      " required!
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-call neobundle#rc(expand('~/.vim/bundle/'))
-" Let NeoBundle manage NeoBundle
+
+"Skip initialization for vim-tiny or vim-small.
+ if 0 | endif
+ if has('vim_starting')
+   if &compatible
+     set nocompatible 
+   endif
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+ endif
+
+ call neobundle#begin(expand('~/.vim/bundle/'))
+"Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+ " My Bundles here:
+ " Refer to |:NeoBundle-examples|.
 NeoBundle 'ervandew/supertab'       
 let g:SuperTabDefaultCompletionType = "context"
 
@@ -560,14 +567,14 @@ noremap <C-h> :bprev<CR>
 
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
 "map <C-l> :Unite -no-split -start-insert buffer<CR>
 let g:unite_source_file_mru_long_limit = 50000000000
 let g:unite_source_directory_mru_long_limit = 50000000
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#sorter_default#use(['sorter_rank'])
 map <leader>u :<C-u>Unite -no-split -start-insert file_mru<CR>
 map <leader>b :Unite -no-split -start-insert buffer<CR>
 "map <C-l> :b <C-l><C-l>
@@ -643,7 +650,7 @@ map <leader>o :Obsession<CR>
 
 NeoBundle 'tpope/vim-surround.git'
 
-"NeoBundle 'SirVer/ultisnips.git'
+NeoBundle 'SirVer/ultisnips.git'
 "let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsJumpForwardTrigger="g<tab>"
 "let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
@@ -676,6 +683,8 @@ NeoBundle 'vim-pandoc/vim-pandoc-syntax.git'
 NeoBundle 'osyo-manga/vim-over'
 let g:over_enable_auto_nohlsearch = 1
 let g:over_enable_cmd_window = 1
+call neobundle#end()
+
 
 "NeoBundle 'justinmk/vim-sneak.git'
 "hi SneakPluginTarget guifg=black guibg=red ctermfg=black ctermbg=red
@@ -684,6 +693,7 @@ filetype plugin indent on     " Required!
 
  " Installation check.
 NeoBundleCheck
+
 
 
 "Ctag et taglist
