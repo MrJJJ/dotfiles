@@ -564,8 +564,8 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
 "map <C-l> :Unite -no-split -start-insert buffer<CR>
-let g:unite_source_file_mru_long_limit = 5000000
-let g:unite_source_directory_mru_long_limit = 5000
+let g:unite_source_file_mru_long_limit = 50000000000
+let g:unite_source_directory_mru_long_limit = 50000000
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 map <leader>u :<C-u>Unite -no-split -start-insert file_mru<CR>
