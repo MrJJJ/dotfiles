@@ -9,6 +9,7 @@ filetype plugin on
 
 "working directory same as file you are editing
 set autochdir
+autocmd BufEnter * silent! lcd %:p:h
 
 "Automatically see when file change
 set autoread
