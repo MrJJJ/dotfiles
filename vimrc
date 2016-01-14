@@ -203,8 +203,11 @@ inoremap <F12> <Esc>:!ctags -R --c++-kinds=+pv --fields=+iaS --extra=+q .<cr>
 noremap <S-W> <C-W>
 noremap <C-L> <C-W>
 
+"autosubstitute
 nnoremap & :s/<c-r><c-w>//g<left><left>
 nnoremap && :%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>
+vnoremap & y:s/<c-r>0//g<left><left>
+vnoremap && y:%s/<c-r>0//gc<left><left><left>
 
 "Permettre d'ouvrir plus d'onglets qu'autorisé
 set tabpagemax=50
@@ -533,6 +536,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
  " Refer to |:NeoBundle-examples|.
 NeoBundle 'ervandew/supertab'       
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabCrMapping = 0
 
 NeoBundle 'scrooloose/nerdtree'    
 map gn :silent NERDTreeToggle <CR>
@@ -568,6 +572,7 @@ noremap <C-h> :bprev<CR>
 
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
+let g:unite_source_output_shellcmd_colors = 2
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('buffer,file,file_mru,file_rec','sorters', 'sorter_rank')
@@ -636,7 +641,7 @@ NeoBundle 'MrJJJ/tslime.vim.git'
 "NeoBundle 'bling/vim-airline.git'
 "let g:airline#extensions#tabline#enabled = 1
 
-NeoBundle 'davidhalter/jedi.git'
+"NeoBundle 'davidhalter/jedi.git'
 
 NeoBundle 'tpope/vim-fugitive'
 map <leader>gg :!git add %<CR> :Gcommit<CR>i
@@ -652,19 +657,25 @@ map <leader>o :Obsession<CR>
 NeoBundle 'tpope/vim-surround.git'
 
 NeoBundle 'SirVer/ultisnips.git'
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="g<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="g<s-tab>"
-""stuff to define my own snippets
-"set runtimepath+=~/.vim/bundle
-"let g:UltiSnipsSnippetDirectories=["UltiSnips","snippets"]
+NeoBundle 'honza/vim-snippets.git'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"stuff to define my own snippets
+set runtimepath+=~/.vim/bundle
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mycoolsnippets"]
+"
 
-NeoBundle 'MrJJJ/snippets.git'
+"NeoBundle 'MrJJJ/snippets.git'
 
 NeoBundle 'vim-scripts/Vim-R-plugin.git'
 let vimrplugin_assign = 1
 let vimrplugin_screenplugin = 0
+
 "NeoBundle 'Valloric/YouCompleteMe.git'
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
 
 NeoBundle "godlygeek/tabular.git"
 map <leader>t, :Tabularize /,<CR>
