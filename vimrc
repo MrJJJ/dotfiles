@@ -434,10 +434,10 @@ map gBB yy:w<CR>:e .%_log<CR>/<C-R>"<C-H><CR>
 
 "Latex
 "Envoyer à latex
-map gl :w !pdflatex % & okular %<.pdf &
-map gll :w !pdflatex --shell-escape --interaction=nonstopmode % ; bibtex %< ; pdflatex --shell-escape --interaction=nonstopmode % ; pdflatex --shell-escape --interaction=nonstopmode % 
-map gL :w !pdflatex % & acroread %<.pdf &
-map gLC :w !pdflatex % & chrome-bowser %<.pdf &
+"map gl :w !pdflatex % & okular %<.pdf &
+"map gll :w !pdflatex --shell-escape --interaction=nonstopmode % ; bibtex %< ; pdflatex --shell-escape --interaction=nonstopmode % ; pdflatex --shell-escape --interaction=nonstopmode % 
+"map gL :w !pdflatex % & acroread %<.pdf &
+"map gLC :w !pdflatex % & chrome-bowser %<.pdf &
 
 let g:tex_fold_enabled=0
 
@@ -478,7 +478,7 @@ map g& :s/#---* //ge<CR>:s/---*$//ge<CR>^ijkki##################################
 "map gé ^i----- <ESC>:call FillLine('-',70)<CR>gh$
 "map g" ^i------- jkgh^i   jk$
 map gé k:s/####*//ge<CR>j:s/###   //ge<CR>:s/   ###//ge<CR>j:s/####*//ge<CR>k^i----- <ESC>:call FillLine('-',70)<CR>gh$
-map g" ^i----- <ESC>gh^i <ESC>$
+map g" ^i <ESC>gh^ <ESC>^li <ESC>^$
 
 "map & 1
 "map é 2
