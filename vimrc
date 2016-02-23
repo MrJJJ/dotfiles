@@ -1,4 +1,4 @@
-"automatically reload vimrc when it's saved
+"automaticall reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
 map zv :so ~/.vimrc<CR>
 
@@ -13,6 +13,9 @@ autocmd BufEnter * silent! lcd %:p:h
 
 "Automatically see when file change
 set autoread
+
+"history
+set viminfo='99999
 
 "Copy Paste in the xclipboard
 if has("unnamedplus") && has("xterm_clipboard") && hostname() == 'ultra'
@@ -600,6 +603,15 @@ function! s:unite_settings()
   imap <buffer> <C-h>  <Plug>(unite_select_previous_line)
 endfunction
 
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--line-numbers --nocolor --nogroup --smart-case'
+let g:unite_source_grep_recursive_opt = ''
+
+nnoremap <Leader>m :<C-u>Unite -no-split -silent -buffer-name=ag grep:/home/$USER/code/<CR>
+
+"nnoremap <Leader>/ :!echo "" > ~/.agvim<CR>:r ! ag -G .sh ~/
+
+
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
@@ -695,6 +707,17 @@ NeoBundle 'vim-pandoc/vim-pandoc-syntax.git'
 NeoBundle 'osyo-manga/vim-over'
 let g:over_enable_auto_nohlsearch = 1
 let g:over_enable_cmd_window = 1
+
+NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+NeoBundle 'junegunn/fzf.vim'
+map <leader>f :File<CR>
+map <leader>F :File ~/<CR>
+map <leader>b :Buffers <CR>
+map <leader>l :Lines <CR>
+map <leader>u :History <CR>
+map <leader>: :History: <CR>
+map <leader>/ :History/ <CR>
+
 call neobundle#end()
 
 
@@ -704,6 +727,8 @@ call neobundle#end()
 filetype plugin indent on     " Required!
 
  " Installation check.
+ "
+
 NeoBundleCheck
 
 
