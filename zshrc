@@ -41,8 +41,8 @@ bindkey "^T" zsh-history-substring-search #PgUp
 ####################
 ###   #HISTORY   ###
 ####################
-HISTSIZE=100000000
-SAVEHIST=100000000
+HISTSIZE=10000000000000000000
+SAVEHIST=10000000000000000000
 HISTFILE=~/.zsh_history
 #Partager historique ?
 setopt histignorealldups sharehistory
@@ -124,7 +124,6 @@ setopt extendedglob
 
 	alias c='clear'
 	alias s='cd ..'
-
 #fi
 
 #Open all filenames in vim
@@ -244,6 +243,9 @@ if [ -z $XCAPE ] ; then
 	#xcape -e 'Caps_Lock=Escape;space=ISO_Group_Shift'
 fi
 fi
+
+#xmodmap -e 'keycode 255=space' ; xmodmap -e 'keycode 65=Shift_L' ; xcape -t 99999999 -e 'Shift_L=space'
+#xmodmap -e 'keycode 65=space'
 
 #plugin from https://github.com/zsh-users/zsh-history-substring-search
 source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
