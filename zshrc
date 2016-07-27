@@ -41,8 +41,8 @@ bindkey "^T" zsh-history-substring-search #PgUp
 ####################
 ###   #HISTORY   ###
 ####################
-HISTSIZE=10000000000000000000
-SAVEHIST=10000000000000000000
+HISTSIZE=900000000000000000
+SAVEHIST=900000000000000000
 HISTFILE=~/.zsh_history
 #Partager historique ?
 setopt histignorealldups sharehistory
